@@ -1,0 +1,34 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "cpp.csv",
+  "dc:description": "Èíselník politické pøíslušnosti kandidátù", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "PSTRANA",
+      "titles": "PSTRANA",
+      "dc:description": "Kód politické pøíslušnosti",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZEV_STRP",
+      "titles": "NAZEV_STRP",
+      "dc:description": "Název politické pøíslušnosti",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAP30",
+      "titles": "ZKRATKAP30",
+      "dc:description": "Název politické pøíslušnosti - 30 znakù",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAP8",
+      "titles": "ZKRATKAP8",
+      "dc:description": "Zkratka politické pøíslušnosti na 15 znakù",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "PSTRANA"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "cnumnuts.csv",
+  "dc:description": "Èíselník okresù, krajù a regionù", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "NUMNUTS",
+      "titles": "NUMNUTS",
+      "dc:description": "Numerický kód oblasti",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NUTS",
+      "titles": "NUTS",
+      "dc:description": "Kód oblast (NUTS)",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "NAZEVNUTS",
+      "titles": "NAZEVNUTS",
+      "dc:description": "Název oblasti",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "KODCIS",
+      "titles": "KODCIS",
+      "dc:description": "Kód èíselníku v KLASU pro vazbu (97 - 101)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "CHODNOTA",
+      "titles": "CHODNOTA",
+      "dc:description": "Odpovídající položka z èíselníku 97 - 101",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "NUMNUTS"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "kvt3.csv",
+  "dc:description": "Data z tiskopisu T/3 zápisu komise v podobì pro prezentaci dat (kompletní struktura)", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "ID_OKRSKY",
+      "titles": "ID_OKRSKY",
+      "dc:description": "Odkaz na identifikaci okrsku (FK)",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "TYP_FORM",
+      "titles": "TYP_FORM",
+      "dc:description": "Obsah dat ve vìtì (1 = T/3, 2 = data z hlasovacího lístku a z druhé strany tiskopisu T/3, 3 = souètová vìta TS)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OPRAVA",
+      "titles": "OPRAVA",
+      "dc:description": "Pøíznak dodateèné opravy na pøebíracím místì v pøípadì chyby (1 = opraven, 0 = neopraven)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "CHYBA",
+      "titles": "CHYBA",
+      "dc:description": "Pøíznak chyby (pustitelné) v datech (1 = je chyba, 0 = není chyba)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OKRES",
+      "titles": "OKRES",
+      "dc:description": "Kód okresu podle CNUMNUTS, ve kterém se nachází volební okrsek",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OBEC",
+      "titles": "OBEC",
+      "dc:description": "Kód obce podle èíselníku obcí, ve které se nachází volební okrsek",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OKRSEK",
+      "titles": "OKRSEK",
+      "dc:description": "Èíslo volebního okrsku",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KC_1",
+      "titles": "KC_1",
+      "dc:description": "Kontrolní èíslo 1 (MODULO7)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "TYPZASTUP",
+      "titles": "TYPZASTUP",
+      "dc:description": "Kód typu zastupitelstva (dle KVTYPZAS)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "COBVODU",
+      "titles": "COBVODU",
+      "dc:description": "Èíslo volebního obvodu",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "VOL_SEZNAM",
+      "titles": "VOL_SEZNAM",
+      "dc:description": "Poèet osob, zapsaných do výpisu ze stálého seznamu",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "VYD_OBALKY",
+      "titles": "VYD_OBALKY",
+      "dc:description": "Poèet volièù, kterým byly vydány úøední obálky",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "ODEVZ_OBAL",
+      "titles": "ODEVZ_OBAL",
+      "dc:description": "Poèet odevzdaných úøedních obálek",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "PL_HL_CELK",
+      "titles": "PL_HL_CELK",
+      "dc:description": "Poèet platných hlasù ve volebním okrsku (celkem pro všechny volební strany)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POCET_VS",
+      "titles": "POCET_VS",
+      "dc:description": "Poèet volebních stran ve volebním okrsku (dle hlasovacího lístku)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POC_VS_HL",
+      "titles": "POC_VS_HL",
+      "dc:description": "Poèet volebních stran, které ve volebním okrsku získaly alespoò jeden platný hlas",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KC_2",
+      "titles": "KC_2",
+      "dc:description": "Kontrolní èíslo 2",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KODZASTUP",
+      "titles": "KODZASTUP",
+      "dc:description": "Kód voleného zastupitelstva",
+      "required": true,
+      "datatype": "number"
+    }
+    ],
+    "primaryKey": ["OKRES","OBEC","OKRSEK","TYPZASTUP"]
+  }
+}

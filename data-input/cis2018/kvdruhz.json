@@ -1,0 +1,22 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "kvdruhz.csv",
+  "dc:description": "Èíselník druhu zastupitelstva obce", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "DRUHZASTUP",
+      "titles": "DRUHZASTUP",
+      "dc:description": "Kód druhu zastupitelstva",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZDRUHZAS",
+      "titles": "NAZDRUHZAS",
+      "dc:description": "Název druhu zastupitelstva",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "DRUHZASTUP"
+  }
+}

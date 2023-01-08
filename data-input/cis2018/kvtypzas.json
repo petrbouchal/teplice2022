@@ -1,0 +1,22 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "kvtypzas.csv",
+  "dc:description": "Èíselník typu zastupitelstva obce", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "TYPZASTUP",
+      "titles": "TYPZASTUP",
+      "dc:description": "Kód typu voleného zastupitelstva",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZTYPUZAS",
+      "titles": "NAZTYPUZAS",
+      "dc:description": "Název typu zastupitelstva",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "TYPZASTUP"
+  }
+}

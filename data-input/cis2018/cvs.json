@@ -1,0 +1,70 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "cvs.csv",
+  "dc:description": "Èíselník volebních stran", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "VSTRANA",
+      "titles": "VSTRANA",
+      "dc:description": "Kód volební strany",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZEVCELK",
+      "titles": "NAZEVCELK",
+      "dc:description": "Název volební strany",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "NAZEV_STRV",
+      "titles": "NAZEV_STRV",
+      "dc:description": "Název volební strany - 50 znakù",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAV30",
+      "titles": "ZKRATKAV30",
+      "dc:description": "Zkrácený název na 30 znakù",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAV8",
+      "titles": "ZKRATKAV8",
+      "dc:description": "Zkratka názvu na 15 znakù",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "POCSTR_SLO",
+      "titles": "POCSTR_SLO",
+      "dc:description": "Poèet politických subjektù ve složení volební strany",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "SLOZENI",
+      "titles": "SLOZENI",
+      "dc:description": "Složení volební strany (kódy VSTRANA pro TYPVS=S)",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKA_OF",
+      "titles": "ZKRATKA_OF",
+      "dc:description": "Oficiální zkratka názvu volební strany",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "TYPVS",
+      "titles": "TYPVS",
+      "dc:description": "Typ volební strany (S=politická strana, hnutí, K=koalice, N=nezávislí kandidáti, D=sdružení",
+      "required": false,
+      "datatype": "string"
+    },{
+      "name": "PLNYNAZEV",
+      "titles": "PLNYNAZEV",
+      "dc:description": "Úplný název strany dle registrace u Ministerstva vnitra",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "VSTRANA"
+  }
+}

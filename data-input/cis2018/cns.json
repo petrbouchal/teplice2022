@@ -1,0 +1,34 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "cns.csv",
+  "dc:description": "Èíselník politických stran a politických hnutí, které navrhly kandidáty - èíselník navrhujících stran", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "NSTRANA",
+      "titles": "NSTRANA",
+      "dc:description": "Kód navrhující strany",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZEV_STRN",
+      "titles": "NAZEV_STRN",
+      "dc:description": "Název strany",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAN30",
+      "titles": "ZKRATKAN30",
+      "dc:description": "Název strany - 30 znakù",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ZKRATKAN8",
+      "titles": "ZKRATKAN8",
+      "dc:description": "Zkratka názvu na 15 znakù",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "NSTRANA"
+  }
+}

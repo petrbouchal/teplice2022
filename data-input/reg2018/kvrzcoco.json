@@ -1,0 +1,238 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "kvrzcoco.csv",
+  "dc:description": "Registr volených zastupitelstev, obcí, mìstských èástí, mìstských obvodù, volebních obvodù a okrskù", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "KRAJ",
+      "titles": "KRAJ",
+      "dc:description": "Krajská pøíslušnost voleného zastupitelstva",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OKRES",
+      "titles": "OKRES",
+      "dc:description": "Kód okresu dle CNUMNUTS, kam OBEC patøí",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "TYPZASTUP",
+      "titles": "TYPZASTUP",
+      "dc:description": "Kód typu zastupitelstva (dle KVTYPZAS)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "DRUHZASTUP",
+      "titles": "DRUHZASTUP",
+      "dc:description": "Kód druhu zastupitelstva (dle KVDRUHZ)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KODZASTUP",
+      "titles": "KODZASTUP",
+      "dc:description": "Kód voleného zastupitelstva",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZEVZAST",
+      "titles": "NAZEVZAST",
+      "dc:description": "Název územní jednotky, jejíž zastupitelstvo se volí",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "OBEC",
+      "titles": "OBEC",
+      "dc:description": "Kód obce, kde se zastupitelstvo volí",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "NAZEVOBCE",
+      "titles": "NAZEVOBCE",
+      "dc:description": "Název obce, kde se volí zastupitelstvo",
+      "required": true,
+      "datatype": "string"
+    },{
+      "name": "ORP",
+      "titles": "ORP",
+      "dc:description": "Kód obce s rozšíøenou pùsobností, kam spadá OBEC a KODZASTUP",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "CPOU",
+      "titles": "CPOU",
+      "dc:description": "Kód pøebíracího místo dle CISPM, kam OBEC patøí",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "REGURAD",
+      "titles": "REGURAD",
+      "dc:description": "Kód registraèního úøadu (ZÚJ obce, která je pro volené zastupitelstvo registraèním úøadem - registruje KL a vyhlašuje výsledky voleb)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OBVODY",
+      "titles": "OBVODY",
+      "dc:description": "Pøíznak èlenìní obce na volební obvody (0=ne, 1=ano, 2=vìta za jednotlivé obvody)",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "COBVODU",
+      "titles": "COBVODU",
+      "dc:description": "Èíslo volebního obvodu (OBVODY=0, pak COBVODU=1; OBVODY=1, pak COBVODU=poèet obvodù; OBVODY=2, pak COBVODU=èíslo obvodu)",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "MANDATY",
+      "titles": "MANDATY",
+      "dc:description": "Poèet volených èlenù zastupitelstva v rámci KODZASTUP nebo KODZASTUP a COBVODU",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POCOBYV",
+      "titles": "POCOBYV",
+      "dc:description": "Poèet obyvatel území, jehož zastupitelstvo se volí, k 1.1.",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK1",
+      "titles": "MINOKRSEK1",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 1. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK1",
+      "titles": "MAXOKRSEK1",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 1. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK2",
+      "titles": "MINOKRSEK2",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 2. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK2",
+      "titles": "MAXOKRSEK2",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 2. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK3",
+      "titles": "MINOKRSEK3",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 3. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK3",
+      "titles": "MAXOKRSEK3",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 3. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK4",
+      "titles": "MINOKRSEK4",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 4. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK4",
+      "titles": "MAXOKRSEK4",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 4. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK5",
+      "titles": "MINOKRSEK5",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 5. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK5",
+      "titles": "MAXOKRSEK5",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 5. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK6",
+      "titles": "MINOKRSEK6",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 6. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK6",
+      "titles": "MAXOKRSEK6",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 6. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK7",
+      "titles": "MINOKRSEK7",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 7. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK7",
+      "titles": "MAXOKRSEK7",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 7. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK8",
+      "titles": "MINOKRSEK8",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 8. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK8",
+      "titles": "MAXOKRSEK8",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 8. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSEK9",
+      "titles": "MINOKRSEK9",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 9. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSEK9",
+      "titles": "MAXOKRSEK9",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 9. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MINOKRSE10",
+      "titles": "MINOKRSE10",
+      "dc:description": "Nejnižší èíslo okrsku v rámci OBEC dle RUIAN - 10. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "MAXOKRSE10",
+      "titles": "MAXOKRSE10",
+      "dc:description": "Nejvyšší èíslo okrsku v rámci OBEC dle RUIAN - 10. øada",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "TYPDUVODU",
+      "titles": "TYPDUVODU",
+      "dc:description": "Typ dùvodu konání voleb dle èíselníku CTYPDUVV",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POCET_VS",
+      "titles": "POCET_VS",
+      "dc:description": "Poèet volebních stran v rámci KODZASTUP nebo KODZASTUP a COBVODU (dle položky OSTRANA v KVRK)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "STAV_OBCE",
+      "titles": "STAV_OBCE",
+      "dc:description": "Pøíznak oèekávání/zpracování výsledkù voleb",
+      "required": true,
+      "datatype": "number"
+    }
+    ],
+    "primaryKey": ["KODZASTUP","OBVODY","COBVODU","OBEC"]
+  }
+}

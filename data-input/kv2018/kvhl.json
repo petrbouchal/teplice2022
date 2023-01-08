@@ -1,0 +1,514 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "kvhl.csv",
+  "dc:description": "Data z hlasovacího lístku a druhé strany tiskopisu T/3 zápisu komise v podobì pro prezentaci dat (kompletní struktura)", 
+  "tableSchema": { 
+    "columns": [{
+      "name": "ID_OKRSKY",
+      "titles": "ID_OKRSKY",
+      "dc:description": "Odkaz na identifikaci okrsku (FK)",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "TYP_FORM",
+      "titles": "TYP_FORM",
+      "dc:description": "Obsah dat ve vìtì (1 = T/3, 2 = data z hlasovacího lístku a z druhé strany tiskopisu T/3, 3 = souètová vìta TS)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OPRAVA",
+      "titles": "OPRAVA",
+      "dc:description": "Pøíznak dodateèné opravy na pøebíracím místì v pøípadì chyby (1 = opraven, 0 = neopraven)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "CHYBA",
+      "titles": "CHYBA",
+      "dc:description": "Pøíznak chyby (pustitelné) v datech (1 = je chyba, 0 = není chyba)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OKRES",
+      "titles": "OKRES",
+      "dc:description": "Kód okresu dle CNUMNUTS",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OBEC",
+      "titles": "OBEC",
+      "dc:description": "Kód obce dle COCO",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "OKRSEK",
+      "titles": "OKRSEK",
+      "dc:description": "Èíslo okrsku v rámci obce",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KC_1",
+      "titles": "KC_1",
+      "dc:description": "Kontrolní èíslo 1 (MODULO7)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "TYPZASTUP",
+      "titles": "TYPZASTUP",
+      "dc:description": "Kód typu zastupitelstva (dle KVTYPZAS)",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POR_STR_HL",
+      "titles": "POR_STR_HL",
+      "dc:description": "Poøadí strany na hlasovacím lístku",
+      "required": false,
+      "datatype": "number"
+    },{
+      "name": "POC_HLASU",
+      "titles": "POC_HLASU",
+      "dc:description": "Poèet hlasù pro tuto stranu",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_01",
+      "titles": "HLASY_01",
+      "dc:description": "Poèet hlasù pro kandidáta è. 1",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_02",
+      "titles": "HLASY_02",
+      "dc:description": "Poèet hlasù pro kandidáta è. 2",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_03",
+      "titles": "HLASY_03",
+      "dc:description": "Poèet hlasù pro kandidáta è. 3",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_04",
+      "titles": "HLASY_04",
+      "dc:description": "Poèet hlasù pro kandidáta è. 4",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_05",
+      "titles": "HLASY_05",
+      "dc:description": "Poèet hlasù pro kandidáta è. 5",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_06",
+      "titles": "HLASY_06",
+      "dc:description": "Poèet hlasù pro kandidáta è. 6",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_07",
+      "titles": "HLASY_07",
+      "dc:description": "Poèet hlasù pro kandidáta è. 7",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_08",
+      "titles": "HLASY_08",
+      "dc:description": "Poèet hlasù pro kandidáta è. 8",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_09",
+      "titles": "HLASY_09",
+      "dc:description": "Poèet hlasù pro kandidáta è. 9",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_10",
+      "titles": "HLASY_10",
+      "dc:description": "Poèet hlasù pro kandidáta è. 10",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_11",
+      "titles": "HLASY_11",
+      "dc:description": "Poèet hlasù pro kandidáta è. 11",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_12",
+      "titles": "HLASY_12",
+      "dc:description": "Poèet hlasù pro kandidáta è. 12",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_13",
+      "titles": "HLASY_13",
+      "dc:description": "Poèet hlasù pro kandidáta è. 13",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_14",
+      "titles": "HLASY_14",
+      "dc:description": "Poèet hlasù pro kandidáta è. 14",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_15",
+      "titles": "HLASY_15",
+      "dc:description": "Poèet hlasù pro kandidáta è. 15",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_16",
+      "titles": "HLASY_16",
+      "dc:description": "Poèet hlasù pro kandidáta è. 16",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_17",
+      "titles": "HLASY_17",
+      "dc:description": "Poèet hlasù pro kandidáta è. 17",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_18",
+      "titles": "HLASY_18",
+      "dc:description": "Poèet hlasù pro kandidáta è. 18",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_19",
+      "titles": "HLASY_19",
+      "dc:description": "Poèet hlasù pro kandidáta è. 19",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_20",
+      "titles": "HLASY_20",
+      "dc:description": "Poèet hlasù pro kandidáta è. 20",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_21",
+      "titles": "HLASY_21",
+      "dc:description": "Poèet hlasù pro kandidáta è. 21",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_22",
+      "titles": "HLASY_22",
+      "dc:description": "Poèet hlasù pro kandidáta è. 22",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_23",
+      "titles": "HLASY_23",
+      "dc:description": "Poèet hlasù pro kandidáta è. 23",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_24",
+      "titles": "HLASY_24",
+      "dc:description": "Poèet hlasù pro kandidáta è. 24",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_25",
+      "titles": "HLASY_25",
+      "dc:description": "Poèet hlasù pro kandidáta è. 25",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_26",
+      "titles": "HLASY_26",
+      "dc:description": "Poèet hlasù pro kandidáta è. 26",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_27",
+      "titles": "HLASY_27",
+      "dc:description": "Poèet hlasù pro kandidáta è. 27",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_28",
+      "titles": "HLASY_28",
+      "dc:description": "Poèet hlasù pro kandidáta è. 28",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_29",
+      "titles": "HLASY_29",
+      "dc:description": "Poèet hlasù pro kandidáta è. 29",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_30",
+      "titles": "HLASY_30",
+      "dc:description": "Poèet hlasù pro kandidáta è. 30",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_31",
+      "titles": "HLASY_31",
+      "dc:description": "Poèet hlasù pro kandidáta è. 31",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_32",
+      "titles": "HLASY_32",
+      "dc:description": "Poèet hlasù pro kandidáta è. 32",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_33",
+      "titles": "HLASY_33",
+      "dc:description": "Poèet hlasù pro kandidáta è. 33",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_34",
+      "titles": "HLASY_34",
+      "dc:description": "Poèet hlasù pro kandidáta è. 34",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_35",
+      "titles": "HLASY_35",
+      "dc:description": "Poèet hlasù pro kandidáta è. 35",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_36",
+      "titles": "HLASY_36",
+      "dc:description": "Poèet hlasù pro kandidáta è. 36",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_37",
+      "titles": "HLASY_37",
+      "dc:description": "Poèet hlasù pro kandidáta è. 37",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_38",
+      "titles": "HLASY_38",
+      "dc:description": "Poèet hlasù pro kandidáta è. 38",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_39",
+      "titles": "HLASY_39",
+      "dc:description": "Poèet hlasù pro kandidáta è. 39",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_40",
+      "titles": "HLASY_40",
+      "dc:description": "Poèet hlasù pro kandidáta è. 40",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_41",
+      "titles": "HLASY_41",
+      "dc:description": "Poèet hlasù pro kandidáta è. 41",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_42",
+      "titles": "HLASY_42",
+      "dc:description": "Poèet hlasù pro kandidáta è. 42",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_43",
+      "titles": "HLASY_43",
+      "dc:description": "Poèet hlasù pro kandidáta è. 43",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_44",
+      "titles": "HLASY_44",
+      "dc:description": "Poèet hlasù pro kandidáta è. 44",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_45",
+      "titles": "HLASY_45",
+      "dc:description": "Poèet hlasù pro kandidáta è. 45",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_46",
+      "titles": "HLASY_46",
+      "dc:description": "Poèet hlasù pro kandidáta è. 46",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_47",
+      "titles": "HLASY_47",
+      "dc:description": "Poèet hlasù pro kandidáta è. 47",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_48",
+      "titles": "HLASY_48",
+      "dc:description": "Poèet hlasù pro kandidáta è. 48",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_49",
+      "titles": "HLASY_49",
+      "dc:description": "Poèet hlasù pro kandidáta è. 49",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_50",
+      "titles": "HLASY_50",
+      "dc:description": "Poèet hlasù pro kandidáta è. 50",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_51",
+      "titles": "HLASY_51",
+      "dc:description": "Poèet hlasù pro kandidáta è. 51",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_52",
+      "titles": "HLASY_52",
+      "dc:description": "Poèet hlasù pro kandidáta è. 52",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_53",
+      "titles": "HLASY_53",
+      "dc:description": "Poèet hlasù pro kandidáta è. 53",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_54",
+      "titles": "HLASY_54",
+      "dc:description": "Poèet hlasù pro kandidáta è. 54",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_55",
+      "titles": "HLASY_55",
+      "dc:description": "Poèet hlasù pro kandidáta è. 55",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_56",
+      "titles": "HLASY_56",
+      "dc:description": "Poèet hlasù pro kandidáta è. 56",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_57",
+      "titles": "HLASY_57",
+      "dc:description": "Poèet hlasù pro kandidáta è. 57",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_58",
+      "titles": "HLASY_58",
+      "dc:description": "Poèet hlasù pro kandidáta è. 58",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_59",
+      "titles": "HLASY_59",
+      "dc:description": "Poèet hlasù pro kandidáta è. 59",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_60",
+      "titles": "HLASY_60",
+      "dc:description": "Poèet hlasù pro kandidáta è. 60",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_61",
+      "titles": "HLASY_61",
+      "dc:description": "Poèet hlasù pro kandidáta è. 61",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_62",
+      "titles": "HLASY_62",
+      "dc:description": "Poèet hlasù pro kandidáta è. 62",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_63",
+      "titles": "HLASY_63",
+      "dc:description": "Poèet hlasù pro kandidáta è. 63",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_64",
+      "titles": "HLASY_64",
+      "dc:description": "Poèet hlasù pro kandidáta è. 64",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_65",
+      "titles": "HLASY_65",
+      "dc:description": "Poèet hlasù pro kandidáta è. 65",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_66",
+      "titles": "HLASY_66",
+      "dc:description": "Poèet hlasù pro kandidáta è. 66",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_67",
+      "titles": "HLASY_67",
+      "dc:description": "Poèet hlasù pro kandidáta è. 67",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_68",
+      "titles": "HLASY_68",
+      "dc:description": "Poèet hlasù pro kandidáta è. 68",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_69",
+      "titles": "HLASY_69",
+      "dc:description": "Poèet hlasù pro kandidáta è. 69",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "HLASY_70",
+      "titles": "HLASY_70",
+      "dc:description": "Poèet hlasù pro kandidáta è. 70",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KC_2",
+      "titles": "KC_2",
+      "dc:description": "Kontrolní èíslo 2",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "POSL_KAND",
+      "titles": "POSL_KAND",
+      "dc:description": "Èíslo posledního kandidáta strany, který získal alespoò jeden platný hlas",
+      "required": true,
+      "datatype": "number"
+    },{
+      "name": "KC_SUM",
+      "titles": "KC_SUM",
+      "dc:description": "Sumární kontrolní èíslo",
+      "required": true,
+      "datatype": "number"
+    }
+    ],
+    "primaryKey": ["OKRES","OBEC","OKRSEK","TYPZASTUP","POR_STR_HL"]
+  }
+}
