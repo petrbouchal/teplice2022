@@ -1,5 +1,8 @@
 ---
-title: Teplice
+title: Analýza kupčení s hlasy v Teplicích
+subtitle: Komunální volby 2022
+date: Prosinec 2022
+author: Petr Bouchal
 execute: 
   echo: false
   warning: false
@@ -9,7 +12,15 @@ knitr:
     dpi: 300
     retina: 3
     dev: ragg_png
+format:
+  html: 
+    toc: true
+    toc-location: left
+    df-print: paged
+lang: cs
 ---
+
+
 
 ```{r setup}
 library(dplyr)
@@ -28,6 +39,8 @@ library(terra)
 ptrr::set_geom_defaults()
 ptrr::set_ptrr_ggplot_fonts()
 ```
+
+[Kód](`r ptrr::gh_url("index.qmd", "teplice2022")`)
 
 ```{r basics}
 tplc_kod <- "567442"
@@ -72,7 +85,7 @@ download_and_return <- function(url, dest_file) {
   return(dest_file)
 }
 vko18_file <- download_and_return("https://www.volby.cz/opendata/kv2018/KV2018_data_20181008_csv.zip",
-                                        "data-input/kv2018/KV2018_data_20181008_csv.zip")
+                                  "data-input/kv2018/KV2018_data_20181008_csv.zip")
 vko18_files <- utils::unzip(vko18_file, junkpaths = FALSE, overwrite = TRUE, 
                             exdir = "data-input/kv2018")
 vko18 <- readr::read_csv2("data-input/kv2018/kvhl.csv", locale = readr::locale(encoding = "CP1250"))
@@ -87,9 +100,9 @@ vk_t3_18 <- readr::read_csv2("data-input/kv2018/kvt3.csv", locale = readr::local
 
 
 reg18_file <- download_and_return("https://www.volby.cz/opendata/kv2018/KV2018reg20181008_csv.zip", 
-                                        "data-input/reg2018.zip")
+                                  "data-input/reg2018.zip")
 cis18_file <- download_and_return("https://www.volby.cz/opendata/kv2018/KV2018ciselniky20181004_csv.zip", 
-                                        "data-input/cis2018.zip")
+                                  "data-input/cis2018.zip")
 
 reg18_files <- utils::unzip(reg18_file, junkpaths = FALSE, overwrite = TRUE, 
                             exdir = "data-input/reg2018")
@@ -140,11 +153,6 @@ vko_rp <- okrsky_p |>
   mutate(podil_rel = podil_okrsku_na_strane - podil_vsech)
 
 hist(vko_rp$podil_rel)
-
-vko_r |> count(OBEC, ZKRATKAO8, wt = sum(podil_okrsku_na_strane)) |> 
-  mutate(n = round(n)) |> 
-  count(n)
-
 ```
 
 ```{r cisla-okrsku}
@@ -168,12 +176,6 @@ vko_rp |> ggplot() + geom_sf() +
 
 # Velké obce srovnání
 
-```{r obce-okrsky}
-vko_r |> 
-  filter(pocet_okrsku > 30) |> 
-  count(OBEC)
-```
-
 ```{r percentily-okrsky}
 percentily_all <- vko_r |> 
   ungroup() |> 
@@ -185,12 +187,16 @@ percentily_all <- vko_r |>
 ```
 
 ```{r percentily-tabulka}
+#| column: page-inset-right
+
 percentily_all |> 
-  mutate(podil_okrsku_na_strane = ptrr::label_percent_cz(accuracy = .1)(podil_okrsku_na_strane)) |> 
-  select(ID_OKRSKY, OKRSEK, OBEC, obec_nazev, ZKRATKAO8, percentil, rank, podil_okrsku_na_strane) |> 
+  mutate(podil_okrsku_na_strane = 
+           ptrr::label_percent_cz(accuracy = .1)(podil_okrsku_na_strane)) |> 
+  select(ID_OKRSKY, OKRSEK, OBEC, obec_nazev, ZKRATKAO8, percentil, 
+         rank, podil_okrsku_na_strane) |> 
   purrr::set_names(c("ID okrsku", "číslo okrsku", "Kod obce", "Název obce", 
                      "Strana (zkr.)", "percentil", "pořadí", "Podíl okrsku na straně")) |> 
-  head(40) |> 
+  head(40) |>
   gt::gt()
 ```
 
@@ -199,43 +205,38 @@ percentily_teplice <- percentily_all |>
   arrange(desc(podil_okrsku_na_strane)) |> 
   select(OBEC, ZKRATKAO8, podil_okrsku_na_strane, percentil, ID_OKRSKY, rank) |>
   filter(OBEC == tplc_kod)
-
-percentily_teplice |> 
-  ggplot(aes(rank)) +
-  geom_histogram(bins = 6) +
-  facet_wrap(~ZKRATKAO8)
 ```
 
 ```{r percentily-teplice-show}
 percentily_teplice
 ```
 
-```{r percentily-teplice-overview}
-percentily_teplice |> 
-  count(ZKRATKAO8, wt = min(rank))
-```
-
 ```{r percentily-all-plot}
 percentily_all |> 
   drop_na(obec_nazev) |> 
-  mutate(obec_nazev = as.factor(obec_nazev) |> fct_reorder(podil_okrsku_na_strane, max)) |> 
-  ggplot(aes(podil_okrsku_na_strane, obec_nazev, colour = if_else(obec_nazev == "Teplice", "darkblue", "grey20"))) +
+  mutate(obec_nazev = as.factor(obec_nazev) |> 
+           fct_reorder(podil_okrsku_na_strane, max)) |> 
+  ggplot(aes(podil_okrsku_na_strane, obec_nazev, 
+             colour = if_else(obec_nazev == "Teplice", "darkblue", "grey20"))) +
   geom_point(alpha = .6, position = position_jitter(width = 0, height = .2), size = .4) +
   geom_text(aes(label = if_else((podil_okrsku_na_strane > .05 & obec_nazev == "Teplice") | 
-                                  (podil_okrsku_na_strane > .1 & obec_nazev != "Teplice"), ZKRATKAO8, NA_character_)), 
+                                  (podil_okrsku_na_strane > .1 & obec_nazev != "Teplice"),
+                                ZKRATKAO8, NA_character_)), 
             hjust = 0, nudge_x = .001, size = 1.5) +
   scale_color_identity() +
   ptrr::theme_ptrr("both") +
   ptrr::scale_x_percent_cz(expand = expansion(add = c(0, .03))) +
   labs(title = "Srovnání koncentrace hlasů: obce s 30 až 70 okrsky",
        subtitle = "Podíl daného okrsku na celkovém zisku strany v dané obci")
+
 ptrr::ggsave_twitter("grafy-export/dot_srovnani-mest.png", scale = 2)
 ```
 
 ```{r percentily-all-boxplot}
 percentily_all  |> 
   drop_na(obec_nazev) |> 
-  mutate(obec_nazev = as.factor(obec_nazev) |> fct_reorder(podil_okrsku_na_strane, mean)) |> 
+  mutate(obec_nazev = as.factor(obec_nazev) |> 
+           fct_reorder(podil_okrsku_na_strane, mean)) |> 
   ggplot(aes(podil_okrsku_na_strane, obec_nazev)) +
   geom_boxplot(aes(colour = if_else(obec_nazev == "Teplice", "blue", "grey20"))) +
   scale_color_identity() +
@@ -355,7 +356,9 @@ vko_rt |>
          top3_okrsek = rank_okrsek_podil < 4) |> 
   group_by(ZKRATKAO8, top3_okrsek) |> 
   summarise(podil_okrsku_na_strane = sum(podil_okrsku_na_strane)) |> 
-  spread(top3_okrsek, podil_okrsku_na_strane)
+  spread(top3_okrsek, podil_okrsku_na_strane) |> 
+  set_names(c("strana", "ostatní", "top 3 nejlepší okrsky strany")) |> 
+  relocate(`ostatní`, .after = everything())
 ```
 
 ```{r }
@@ -517,10 +520,6 @@ simulace <- vko_rp |>
 ```
 
 ```{r}
-simulace |> t()
-```
-
-```{r}
 podily_bez_top2 <- vko_rp |> 
   st_drop_geometry() |> 
   filter(ZKRATKAO8 == "PRO Zdraví", !cislo %in% okr_top2) |> 
@@ -542,10 +541,6 @@ simulace2 <- vko_rp |>
   summarise(across(c(POC_HLASU, starts_with("recount")), sum)) |> 
   mutate(across(starts_with("recount_"), ~.-POC_HLASU), 
          typ = "Okrsky 18 a 20 vyloučeny: hladina v rámci zbylých okrsků")
-
-simulace2 |> t()
-
-
 ```
 
 ```{r}
@@ -555,9 +550,10 @@ bind_rows(simulace, simulace2) |>
            fct_relevel("mean", "median", "3q", "9d")) |> 
   ggplot(aes(value, name)) +
   geom_col() +
-  geom_text(aes(label = round(value)), hjust = 0, nudge_x = 100, color = "white", fontface = "bold") +
+  geom_text(aes(label = round(value)), hjust = 0, nudge_x = 100, 
+            color = "white", fontface = "bold") +
   facet_wrap(~typ) +
-  theme_ptrr(multiplot = TRUE, panel.spacing.x = unit(15, "pt")) +
+  theme_ptrr("x", multiplot = TRUE, panel.spacing.x = unit(15, "pt")) +
   scale_y_discrete(labels = c("Průměr", "Medián", "3. kvartil", "9. decil"))
 ```
 
@@ -578,7 +574,7 @@ autokorelace <- vko_rp |>
          len_wts = map_int(weights, length),
          ac = map2_dbl(data, weights, ~autocor(.x$podil_strany, .y, "moran")))
 
-autokorelace
+autokorelace |> select(strana = ZKRATKAO8, autokorelace = ac)
 ```
 
 ```{r }
@@ -599,7 +595,8 @@ autokor_graf
 ```
 
 ```{r }
-ptrr::ggsave_twitter("grafy-export/autokor.png", autokor_graf, scale = 2, height = 400, width = 900)
+ptrr::ggsave_twitter("grafy-export/autokor.png", autokor_graf, scale = 2, 
+                     height = 400, width = 900)
 ```
 
 ## Všechna města
@@ -628,7 +625,8 @@ autokorelace_mesta <- okrsky_all |>
 ```{r }
 autokorelace_mesta |> 
   select(obec_nazev, obec_kod, ZKRATKAO8, ac) |> 
-  arrange(ac)
+  arrange(ac) |> 
+  rename(strana = ZKRATKAO8, autokorelace = ac)
 ```
 
 ```{r }
@@ -645,29 +643,45 @@ autokorelace_mesta |>
 
 # Rozdělení podobně (ne)úspěšných stran v podobně velkých městech
 
+(Strany s 3–8 % hlasů, ve městech s 30 až 70 okrsky)
+
 ```{r}
+#| fig-asp: 2.5
+
 vko_r |> 
   left_join(obce_cis, by = "OBEC") |> 
   filter(OBEC %in% autokor_mesta_ids, between(PROCHLSTR, 3, 8)) |> 
   ggplot(aes(POC_HLASU, fill = (OBEC == tplc_kod & ZKRATKAO8 == "PRO Zdraví"))) +
-  facet_wrap(facets = c("ZKRATKAO8", "obec_nazev"), scales = "free_x") +
+  facet_wrap(facets = c("ZKRATKAO8", "obec_nazev"), 
+             scales = "free_x", ncol = 5, labeller = labeller(label_value, .multi_line = FALSE)) +
   geom_histogram(bins = 10) +
-  theme(strip.text = element_text(lineheight = .8, size = 10, margin = margin(0)),
-        axis.text = element_text(size = 10),
-        axis.title = element_blank(),
-        legend.position = "none")
+  theme_ptrr(multiplot = TRUE, 
+             strip.text = element_text(lineheight = .8, size = 6, margin = margin(0)),
+             axis.text = element_text(size = 6),
+             axis.title = element_blank(),
+             legend.position = "none")
 ```
 
 ```{r}
-vko_r |> 
-  left_join(obce_cis) |> 
+skewness <- vko_r |> 
+  left_join(obce_cis, by = "OBEC") |> 
   filter(OBEC %in% autokor_mesta_ids, between(PROCHLSTR, 0, 10)) |> 
   group_by(obec_nazev, ZKRATKAO8) |> 
-  summarise(skew = psych::skew(POC_HLASU),
-            kurtosis = psych::kurtosi(POC_HLASU),
-            normality_value = shapiro.test(POC_HLASU)[["statistic"]],
-            normality_pvalue = shapiro.test(POC_HLASU)[["p.value"]] * 100) |> 
-  arrange(desc(normality_value)) |> 
-  pull(normality_pvalue) |> hist()
+  summarise(v_skew = psych::skew(POC_HLASU),
+            v_kurtosis = psych::kurtosi(POC_HLASU),
+            v_normality_value = shapiro.test(POC_HLASU)[["statistic"]],
+            # v_p_normality_pvalue = shapiro.test(POC_HLASU)[["p.value"]] * 100, 
+            .groups = "drop") |> 
+  arrange(-v_kurtosis)
+```
+
+```{r}
+skewness
+```
+
+
+```{r}
+skewness |> 
+  pivot_longer(cols = matches("v_"))
 ```
 
