@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs" xml:lang="cs"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.56">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Petr Bouchal">
 
-<title>Teplice</title>
+<title>Analýza kupčení s hlasy v Teplicích</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,25 +35,62 @@ ul.task-list li input[type="checkbox"] {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+<link href="index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
 
 </head>
 
-<body class="fullcontent">
+<body>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
-<main class="content" id="quarto-document-content">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Obsah</h2>
+   
+  <ul>
+  <li><a href="#velké-obce-srovnání" id="toc-velké-obce-srovnání" class="nav-link active" data-scroll-target="#velké-obce-srovnání">Velké obce srovnání</a></li>
+  <li><a href="#mapy" id="toc-mapy" class="nav-link" data-scroll-target="#mapy">Mapy</a></li>
+  <li><a href="#histogramy" id="toc-histogramy" class="nav-link" data-scroll-target="#histogramy">Histogramy</a></li>
+  <li><a href="#scatter-ploty" id="toc-scatter-ploty" class="nav-link" data-scroll-target="#scatter-ploty">Scatter ploty</a></li>
+  <li><a href="#klíčové-okrsky" id="toc-klíčové-okrsky" class="nav-link" data-scroll-target="#klíčové-okrsky">Klíčové okrsky</a></li>
+  <li><a href="#simulace" id="toc-simulace" class="nav-link" data-scroll-target="#simulace">Simulace</a></li>
+  <li><a href="#spatial-autocorrelation" id="toc-spatial-autocorrelation" class="nav-link" data-scroll-target="#spatial-autocorrelation">Spatial autocorrelation</a>
+  <ul class="collapse">
+  <li><a href="#teplice" id="toc-teplice" class="nav-link" data-scroll-target="#teplice">Teplice</a></li>
+  <li><a href="#všechna-města" id="toc-všechna-města" class="nav-link" data-scroll-target="#všechna-města">Všechna města</a></li>
+  </ul></li>
+  <li><a href="#rozdělení-podobně-neúspěšných-stran-v-podobně-velkých-městech" id="toc-rozdělení-podobně-neúspěšných-stran-v-podobně-velkých-městech" class="nav-link" data-scroll-target="#rozdělení-podobně-neúspěšných-stran-v-podobně-velkých-městech">Rozdělení podobně (ne)úspěšných stran v podobně velkých městech</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Teplice</h1>
+<h1 class="title">Analýza kupčení s hlasy v Teplicích</h1>
+<p class="subtitle lead">Komunální volby 2022</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Petr Bouchal </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Publikováno</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1. ledna 2022</p>
+    </div>
+  </div>
   
     
   </div>
@@ -63,6 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 
 </div>
+<p><a href="https://github.com/petrbouchal/teplice2022/tree/main/index.qmd">Kód</a></p>
 <div class="cell">
 
 </div>
@@ -85,13 +124,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/add-spatial-1.png" class="img-fluid" width="2100"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-      n    nn
-  &lt;dbl&gt; &lt;int&gt;
-1     0     5
-2     1 12040</code></pre>
-</div>
 </div>
 <div class="cell quarto-layout-panel" data-fig.asp="1.1">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -103,38 +135,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="velké-obce-srovnání" class="level1">
+<section id="velké-obce-srovnání" class="level1 page-columns page-full">
 <h1>Velké obce srovnání</h1>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 2
-   OBEC       n
-   &lt;chr&gt;  &lt;int&gt;
- 1 500089  1350
- 2 500097  1716
- 3 500119  4092
- 4 500143  2754
- 5 500178  3328
- 6 500186  1080
- 7 500208  3672
- 8 500216  1176
- 9 500224  3379
-10 500496  1056
-# … with 41 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
 
 </div>
-<div class="cell">
-<div class="cell-output-display">
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-page-inset-right">
 
-<div id="zgtqeseisf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="tvzckoxhpn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#zgtqeseisf) .gt_table {
+:where(#tvzckoxhpn) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -159,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_heading {
+:where(#tvzckoxhpn) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -171,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_title {
+:where(#tvzckoxhpn) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -183,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-:where(#zgtqeseisf) .gt_subtitle {
+:where(#tvzckoxhpn) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -195,13 +209,13 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-:where(#zgtqeseisf) .gt_bottom_border {
+:where(#tvzckoxhpn) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_col_headings {
+:where(#tvzckoxhpn) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -216,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_col_heading {
+:where(#tvzckoxhpn) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -236,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-:where(#zgtqeseisf) .gt_column_spanner_outer {
+:where(#tvzckoxhpn) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -248,15 +262,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-:where(#zgtqeseisf) .gt_column_spanner_outer:first-child {
+:where(#tvzckoxhpn) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#zgtqeseisf) .gt_column_spanner_outer:last-child {
+:where(#tvzckoxhpn) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#zgtqeseisf) .gt_column_spanner {
+:where(#tvzckoxhpn) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -268,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-:where(#zgtqeseisf) .gt_group_heading {
+:where(#tvzckoxhpn) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -293,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-:where(#zgtqeseisf) .gt_empty_group_heading {
+:where(#tvzckoxhpn) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -308,15 +322,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-:where(#zgtqeseisf) .gt_from_md > :first-child {
+:where(#tvzckoxhpn) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#zgtqeseisf) .gt_from_md > :last-child {
+:where(#tvzckoxhpn) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#zgtqeseisf) .gt_row {
+:where(#tvzckoxhpn) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -335,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-:where(#zgtqeseisf) .gt_stub {
+:where(#tvzckoxhpn) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -348,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-:where(#zgtqeseisf) .gt_stub_row_group {
+:where(#tvzckoxhpn) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -362,11 +376,11 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-:where(#zgtqeseisf) .gt_row_group_first td {
+:where(#tvzckoxhpn) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#zgtqeseisf) .gt_summary_row {
+:where(#tvzckoxhpn) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -376,16 +390,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-:where(#zgtqeseisf) .gt_first_summary_row {
+:where(#tvzckoxhpn) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_first_summary_row.thick {
+:where(#tvzckoxhpn) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#zgtqeseisf) .gt_last_summary_row {
+:where(#tvzckoxhpn) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -395,7 +409,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_grand_summary_row {
+:where(#tvzckoxhpn) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -405,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-:where(#zgtqeseisf) .gt_first_grand_summary_row {
+:where(#tvzckoxhpn) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -415,11 +429,11 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_striped {
+:where(#tvzckoxhpn) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#zgtqeseisf) .gt_table_body {
+:where(#tvzckoxhpn) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -428,7 +442,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_footnotes {
+:where(#tvzckoxhpn) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -442,7 +456,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_footnote {
+:where(#tvzckoxhpn) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -451,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-:where(#zgtqeseisf) .gt_sourcenotes {
+:where(#tvzckoxhpn) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -465,7 +479,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-:where(#zgtqeseisf) .gt_sourcenote {
+:where(#tvzckoxhpn) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -473,36 +487,36 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-:where(#zgtqeseisf) .gt_left {
+:where(#tvzckoxhpn) .gt_left {
   text-align: left;
 }
 
-:where(#zgtqeseisf) .gt_center {
+:where(#tvzckoxhpn) .gt_center {
   text-align: center;
 }
 
-:where(#zgtqeseisf) .gt_right {
+:where(#tvzckoxhpn) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#zgtqeseisf) .gt_font_normal {
+:where(#tvzckoxhpn) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#zgtqeseisf) .gt_font_bold {
+:where(#tvzckoxhpn) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#zgtqeseisf) .gt_font_italic {
+:where(#tvzckoxhpn) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#zgtqeseisf) .gt_super {
+:where(#tvzckoxhpn) .gt_super {
   font-size: 65%;
 }
 
-:where(#zgtqeseisf) .gt_two_val_uncert {
+:where(#tvzckoxhpn) .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -511,31 +525,31 @@ ul.task-list li input[type="checkbox"] {
   margin-left: 0.1em;
 }
 
-:where(#zgtqeseisf) .gt_footnote_marks {
+:where(#tvzckoxhpn) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#zgtqeseisf) .gt_asterisk {
+:where(#tvzckoxhpn) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#zgtqeseisf) .gt_slash_mark {
+:where(#tvzckoxhpn) .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-:where(#zgtqeseisf) .gt_fraction_numerator {
+:where(#tvzckoxhpn) .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-:where(#zgtqeseisf) .gt_fraction_denominator {
+:where(#tvzckoxhpn) .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -884,39 +898,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="cell">
+
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/percentily-teplice-1.png" class="img-fluid" width="2100"></p>
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["OBEC"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ZKRATKAO8"],"name":[2],"type":["chr"],"align":["left"]},{"label":["podil_okrsku_na_strane"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["percentil"],"name":[4],"type":["int"],"align":["right"]},{"label":["ID_OKRSKY"],"name":[5],"type":["chr"],"align":["left"]},{"label":["rank"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"567442","2":"PRO Zdraví","3":"0.1005069429","4":"1","5":"941","6":"25.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0627617368","4":"8","5":"943","6":"244.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0500330615","4":"20","5":"960","6":"655.0"},{"1":"567442","2":"KSČM","3":"0.0493165089","4":"21","5":"970","6":"701.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0483248843","4":"23","5":"942","6":"759.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0450187348","4":"30","5":"965","6":"1001.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0438064801","4":"34","5":"937","6":"1135.0"},{"1":"567442","2":"KSČM","3":"0.0425867508","4":"38","5":"959","6":"1272.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0424840203","4":"38","5":"948","6":"1285.0"},{"1":"567442","2":"KSČM","3":"0.0409043113","4":"44","5":"969","6":"1465.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0401576096","4":"47","5":"938","6":"1565.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0396523128","4":"49","5":"934","6":"1641.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0392683826","4":"51","5":"938","6":"1704.0"},{"1":"567442","2":"KSČM","3":"0.0389064143","4":"52","5":"944","6":"1754.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0387155231","4":"53","5":"937","6":"1772.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0381546544","4":"55","5":"937","6":"1866.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0373948031","4":"59","5":"947","6":"1988.0"},{"1":"567442","2":"SPD","3":"0.0370213666","4":"61","5":"961","6":"2055.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0369288021","4":"61","5":"946","6":"2067.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0365329513","4":"63","5":"928","6":"2138.0"},{"1":"567442","2":"KSČM","3":"0.0363827550","4":"64","5":"954","6":"2174.0"},{"1":"567442","2":"SPD","3":"0.0356674424","4":"68","5":"970","6":"2308.0"},{"1":"567442","2":"SPD","3":"0.0353924265","4":"70","5":"965","6":"2352.0"},{"1":"567442","2":"KSČM","3":"0.0349106204","4":"72","5":"961","6":"2440.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0347994349","4":"73","5":"936","6":"2466.0"},{"1":"567442","2":"KSČM","3":"0.0344900105","4":"75","5":"965","6":"2523.5"},{"1":"567442","2":"KSČM","3":"0.0344900105","4":"75","5":"968","6":"2523.5"},{"1":"567442","2":"ODS+TOP 09","3":"0.0343567011","4":"76","5":"934","6":"2553.0"},{"1":"567442","2":"KSČM","3":"0.0341745531","4":"77","5":"950","6":"2597.0"},{"1":"567442","2":"KSČM","3":"0.0336487907","4":"80","5":"962","6":"2718.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0336343239","4":"81","5":"970","6":"2725.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0311169485","4":"98","5":"950","6":"3308.0"},{"1":"567442","2":"KSČM","3":"0.0303890641","4":"103","5":"926","6":"3491.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0302960652","4":"104","5":"947","6":"3521.0"},{"1":"567442","2":"ANO","3":"0.0301035954","4":"106","5":"970","6":"3580.0"},{"1":"567442","2":"SPD","3":"0.0300401946","4":"106","5":"934","6":"3602.0"},{"1":"567442","2":"KSČM","3":"0.0298633018","4":"108","5":"938","6":"3654.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0296451400","4":"110","5":"964","6":"3730.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0295779839","4":"111","5":"935","6":"3752.0"},{"1":"567442","2":"ANO","3":"0.0292606134","4":"114","5":"967","6":"3855.0"},{"1":"567442","2":"ANO","3":"0.0292301442","4":"114","5":"961","6":"3863.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0289636956","4":"116","5":"950","6":"3934.0"},{"1":"567442","2":"SPD","3":"0.0288978210","4":"117","5":"963","6":"3958.0"},{"1":"567442","2":"SPD","3":"0.0288343558","4":"118","5":"955","6":"3981.0"},{"1":"567442","2":"ANO","3":"0.0286715417","4":"119","5":"934","6":"4026.0"},{"1":"567442","2":"ANO","3":"0.0285801341","4":"120","5":"965","6":"4064.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0283186928","4":"123","5":"940","6":"4151.0"},{"1":"567442","2":"KSČM","3":"0.0280757098","4":"125","5":"942","6":"4240.0"},{"1":"567442","2":"ANO","3":"0.0280621572","4":"125","5":"963","6":"4244.0"},{"1":"567442","2":"ANO","3":"0.0279402803","4":"127","5":"930","6":"4296.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0278886910","4":"127","5":"949","6":"4311.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0275269523","4":"131","5":"935","6":"4425.0"},{"1":"567442","2":"SPD","3":"0.0273746562","4":"132","5":"937","6":"4483.0"},{"1":"567442","2":"SPD","3":"0.0272054157","4":"134","5":"942","6":"4553.0"},{"1":"567442","2":"KSČM","3":"0.0271293375","4":"135","5":"953","6":"4585.0"},{"1":"567442","2":"SPD","3":"0.0269515549","4":"137","5":"962","6":"4647.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0267676147","4":"139","5":"952","6":"4715.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0266622886","4":"140","5":"952","6":"4755.0"},{"1":"567442","2":"KSČM","3":"0.0262881178","4":"144","5":"966","6":"4892.0"},{"1":"567442","2":"KSČM","3":"0.0260778128","4":"147","5":"925","6":"4973.0"},{"1":"567442","2":"ANO","3":"0.0260308755","4":"147","5":"962","6":"4996.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0258922538","4":"150","5":"932","6":"5068.0"},{"1":"567442","2":"ANO","3":"0.0256246191","4":"153","5":"957","6":"5182.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0254145461","4":"155","5":"948","6":"5269.0"},{"1":"567442","2":"ANO","3":"0.0250863295","4":"160","5":"940","6":"5419.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0250716332","4":"160","5":"933","6":"5425.0"},{"1":"567442","2":"SPD","3":"0.0250264438","4":"161","5":"936","6":"5450.0"},{"1":"567442","2":"ANO","3":"0.0249949218","4":"161","5":"959","6":"5467.0"},{"1":"567442","2":"KSČM","3":"0.0249211356","4":"162","5":"945","6":"5506.0"},{"1":"567442","2":"ANO","3":"0.0248628885","4":"163","5":"956","6":"5534.0"},{"1":"567442","2":"SPD","3":"0.0248572033","4":"163","5":"933","6":"5537.0"},{"1":"567442","2":"ANO","3":"0.0248527321","4":"163","5":"966","6":"5538.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0247578394","4":"165","5":"936","6":"5585.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0246046079","4":"167","5":"959","6":"5650.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0245757108","4":"167","5":"962","6":"5664.0"},{"1":"567442","2":"ANO","3":"0.0244261629","4":"168","5":"968","6":"5711.0"},{"1":"567442","2":"SPD","3":"0.0244129469","4":"169","5":"958","6":"5716.0"},{"1":"567442","2":"SPD","3":"0.0243917918","4":"169","5":"957","6":"5729.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0243528704","4":"170","5":"945","6":"5752.0"},{"1":"567442","2":"ANO","3":"0.0242433476","4":"171","5":"952","6":"5804.0"},{"1":"567442","2":"SPD","3":"0.0241802412","4":"172","5":"954","6":"5844.0"},{"1":"567442","2":"ANO","3":"0.0241417835","4":"173","5":"955","6":"5859.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0240647460","4":"174","5":"956","6":"5889.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0240135719","4":"174","5":"940","6":"5915.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0239572455","4":"175","5":"945","6":"5937.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0238493953","4":"176","5":"963","6":"5983.0"},{"1":"567442","2":"ANO","3":"0.0238167784","4":"177","5":"942","6":"5999.0"},{"1":"567442","2":"ANO","3":"0.0237456835","4":"178","5":"939","6":"6045.0"},{"1":"567442","2":"ANO","3":"0.0237152143","4":"179","5":"937","6":"6060.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0236852186","4":"179","5":"954","6":"6081.0"},{"1":"567442","2":"KSČM","3":"0.0236593060","4":"180","5":"955","6":"6096.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0236040297","4":"181","5":"931","6":"6126.0"},{"1":"567442","2":"KSČM","3":"0.0235541535","4":"181","5":"958","6":"6147.0"},{"1":"567442","2":"ANO","3":"0.0234917733","4":"182","5":"926","6":"6168.5"},{"1":"567442","2":"ANO","3":"0.0234917733","4":"182","5":"935","6":"6168.5"},{"1":"567442","2":"PRO Zdraví","3":"0.0234736610","4":"182","5":"945","6":"6182.0"},{"1":"567442","2":"SPD","3":"0.0234609689","4":"182","5":"950","6":"6187.0"},{"1":"567442","2":"KSČM","3":"0.0234490011","4":"183","5":"937","6":"6194.5"},{"1":"567442","2":"KSČM","3":"0.0234490011","4":"183","5":"957","6":"6194.5"},{"1":"567442","2":"ANO","3":"0.0233597400","4":"184","5":"954","6":"6244.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0231893851","4":"186","5":"970","6":"6324.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0231586707","4":"187","5":"948","6":"6343.0"},{"1":"567442","2":"SPD","3":"0.0230590226","4":"188","5":"943","6":"6391.0"},{"1":"567442","2":"ANO","3":"0.0228823888","4":"192","5":"925","6":"6501.0"},{"1":"567442","2":"KSČM","3":"0.0226077813","4":"196","5":"948","6":"6646.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0224983107","4":"198","5":"925","6":"6707.0"},{"1":"567442","2":"SPD","3":"0.0222551301","4":"202","5":"945","6":"6856.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0222076287","4":"203","5":"958","6":"6886.0"},{"1":"567442","2":"ANO","3":"0.0220800325","4":"205","5":"931","6":"6960.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0220409963","4":"206","5":"963","6":"6979.0"},{"1":"567442","2":"SPD","3":"0.0219589592","4":"208","5":"941","6":"7046.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0217918791","4":"211","5":"927","6":"7142.0"},{"1":"567442","2":"SPD","3":"0.0217685636","4":"211","5":"935","6":"7153.0"},{"1":"567442","2":"ANO","3":"0.0217448710","4":"211","5":"945","6":"7165.0"},{"1":"567442","2":"KSČM","3":"0.0216614090","4":"213","5":"939","6":"7212.0"},{"1":"567442","2":"ANO","3":"0.0216331505","4":"213","5":"964","6":"7227.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0215837575","4":"214","5":"953","6":"7250.0"},{"1":"567442","2":"SPD","3":"0.0215570129","4":"214","5":"967","6":"7267.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0215000921","4":"215","5":"962","6":"7289.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0214233061","4":"216","5":"955","6":"7340.0"},{"1":"567442","2":"SPD","3":"0.0214089274","4":"217","5":"952","6":"7351.0"},{"1":"567442","2":"KSČM","3":"0.0213459516","4":"218","5":"960","6":"7400.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0212850912","4":"219","5":"961","6":"7442.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0212697340","4":"220","5":"963","6":"7450.0"},{"1":"567442","2":"ANO","3":"0.0212573634","4":"220","5":"969","6":"7454.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0212144589","4":"220","5":"924","6":"7475.0"},{"1":"567442","2":"SPD","3":"0.0211973768","4":"221","5":"939","6":"7484.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0211787884","4":"221","5":"925","6":"7500.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0210854475","4":"223","5":"959","6":"7552.0"},{"1":"567442","2":"SPD","3":"0.0210492913","4":"223","5":"966","6":"7579.0"},{"1":"567442","2":"KSČM","3":"0.0210304942","4":"224","5":"930","6":"7586.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0210036666","4":"224","5":"956","6":"7606.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0209779470","4":"225","5":"946","6":"7622.0"},{"1":"567442","2":"ANO","3":"0.0209323583","4":"225","5":"927","6":"7647.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0209318754","4":"225","5":"958","6":"7648.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0208858038","4":"226","5":"933","6":"7672.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0208285448","4":"227","5":"931","6":"7709.0"},{"1":"567442","2":"ANO","3":"0.0208003250","4":"228","5":"944","6":"7722.0"},{"1":"567442","2":"ANO","3":"0.0207089173","4":"229","5":"958","6":"7783.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0206083315","4":"232","5":"930","6":"7857.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0205877524","4":"232","5":"955","6":"7873.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0205330269","4":"233","5":"932","6":"7908.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0205018736","4":"234","5":"930","6":"7923.0"},{"1":"567442","2":"SPD","3":"0.0204781045","4":"234","5":"938","6":"7936.0"},{"1":"567442","2":"KSČM","3":"0.0203995794","4":"235","5":"941","6":"7990.0"},{"1":"567442","2":"SPD","3":"0.0203723292","4":"236","5":"944","6":"8007.0"},{"1":"567442","2":"SPD","3":"0.0202242437","4":"239","5":"960","6":"8111.0"},{"1":"567442","2":"ANO","3":"0.0202112533","4":"239","5":"929","6":"8118.0"},{"1":"567442","2":"ANO","3":"0.0198862482","4":"245","5":"938","6":"8329.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0198368966","4":"247","5":"961","6":"8365.0"},{"1":"567442","2":"SPD","3":"0.0197376772","4":"249","5":"956","6":"8440.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0197266916","4":"249","5":"940","6":"8448.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0196725843","4":"250","5":"964","6":"8488.0"},{"1":"567442","2":"SPD","3":"0.0196319018","4":"251","5":"951","6":"8522.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0196164867","4":"252","5":"944","6":"8536.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0195957983","4":"252","5":"926","6":"8551.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0195698572","4":"253","5":"949","6":"8577.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0192118681","4":"259","5":"957","6":"8795.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0191211076","4":"261","5":"966","6":"8845.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0190116565","4":"263","5":"942","6":"8923.0"},{"1":"567442","2":"ANO","3":"0.0189620150","4":"264","5":"936","6":"8958.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0189240957","4":"265","5":"957","6":"8987.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0188586523","4":"266","5":"969","6":"9035.0"},{"1":"567442","2":"SPD","3":"0.0188280093","4":"267","5":"959","6":"9053.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0187818092","4":"268","5":"964","6":"9085.0"},{"1":"567442","2":"KSČM","3":"0.0186119874","4":"271","5":"927","6":"9193.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0186066875","4":"271","5":"930","6":"9197.0"},{"1":"567442","2":"SPD","3":"0.0185318384","4":"272","5":"930","6":"9245.0"},{"1":"567442","2":"KSČM","3":"0.0185068349","4":"273","5":"946","6":"9266.0"},{"1":"567442","2":"SPD","3":"0.0184683732","4":"274","5":"932","6":"9294.5"},{"1":"567442","2":"SPD","3":"0.0184683732","4":"274","5":"968","6":"9294.5"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0184132932","4":"275","5":"951","6":"9339.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0183491294","4":"277","5":"968","6":"9394.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0181287194","4":"282","5":"955","6":"9563.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0179828162","4":"285","5":"969","6":"9676.0"},{"1":"567442","2":"KSČM","3":"0.0178759201","4":"287","5":"967","6":"9750.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0177981045","4":"289","5":"939","6":"9816.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0177310786","4":"291","5":"933","6":"9869.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0177091884","4":"291","5":"965","6":"9889.0"},{"1":"567442","2":"ANO","3":"0.0176721511","4":"292","5":"947","6":"9915.0"},{"1":"567442","2":"SPD","3":"0.0174529300","4":"297","5":"948","6":"10086.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0173042193","4":"300","5":"968","6":"10188.0"},{"1":"567442","2":"ANO","3":"0.0172760512","4":"301","5":"960","6":"10213.0"},{"1":"567442","2":"SPD","3":"0.0171779141","4":"303","5":"940","6":"10278.0"},{"1":"567442","2":"SPD","3":"0.0171567590","4":"303","5":"969","6":"10294.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0171368746","4":"304","5":"951","6":"10303.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0170925733","4":"305","5":"967","6":"10340.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0170465016","4":"306","5":"929","6":"10376.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0169320856","4":"308","5":"961","6":"10455.0"},{"1":"567442","2":"ANO","3":"0.0168901077","4":"309","5":"948","6":"10482.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0165397137","4":"317","5":"968","6":"10756.0"},{"1":"567442","2":"KSČM","3":"0.0165089380","4":"318","5":"934","6":"10782.0"},{"1":"567442","2":"SPD","3":"0.0164797969","4":"318","5":"924","6":"10801.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0164629277","4":"319","5":"966","6":"10828.0"},{"1":"567442","2":"ANO","3":"0.0164026000","4":"320","5":"946","6":"10877.0"},{"1":"567442","2":"SPD","3":"0.0163528665","4":"321","5":"928","6":"10902.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0162753790","4":"323","5":"960","6":"10961.0"},{"1":"567442","2":"ANO","3":"0.0162705667","4":"323","5":"950","6":"10968.0"},{"1":"567442","2":"SPD","3":"0.0161624709","4":"326","5":"927","6":"11054.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0158375746","4":"334","5":"926","6":"11325.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0158047392","4":"335","5":"951","6":"11359.0"},{"1":"567442","2":"ANO","3":"0.0157627463","4":"335","5":"953","6":"11388.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0157593123","4":"336","5":"925","6":"11391.0"},{"1":"567442","2":"SPD","3":"0.0157182145","4":"336","5":"925","6":"11421.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0156515077","4":"338","5":"927","6":"11483.0"},{"1":"567442","2":"SPD","3":"0.0153797334","4":"345","5":"947","6":"11710.0"},{"1":"567442","2":"ANO","3":"0.0153463335","4":"346","5":"928","6":"11738.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0151918131","4":"349","5":"939","6":"11860.0"},{"1":"567442","2":"SPD","3":"0.0150412524","4":"353","5":"926","6":"11978.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0149878775","4":"354","5":"931","6":"12018.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0149400755","4":"355","5":"944","6":"12054.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0149327750","4":"355","5":"970","6":"12064.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0149118496","4":"356","5":"942","6":"12081.0"},{"1":"567442","2":"SPD","3":"0.0147027713","4":"361","5":"929","6":"12243.5"},{"1":"567442","2":"SPD","3":"0.0147027713","4":"361","5":"964","6":"12243.5"},{"1":"567442","2":"SPD","3":"0.0146181510","4":"363","5":"931","6":"12311.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0145893482","4":"363","5":"953","6":"12332.0"},{"1":"567442","2":"ANO","3":"0.0144728824","4":"367","5":"941","6":"12447.0"},{"1":"567442","2":"ANO","3":"0.0144424132","4":"367","5":"932","6":"12478.0"},{"1":"567442","2":"KSČM","3":"0.0143007361","4":"371","5":"943","6":"12602.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0142975613","4":"371","5":"965","6":"12605.0"},{"1":"567442","2":"SPD","3":"0.0142162048","4":"373","5":"946","6":"12675.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0140825604","4":"376","5":"954","6":"12770.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0139769058","4":"379","5":"924","6":"12862.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0138858276","4":"382","5":"929","6":"12945.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0138307251","4":"383","5":"950","6":"12982.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0135001102","4":"392","5":"936","6":"13285.0"},{"1":"567442","2":"KSČM","3":"0.0134595163","4":"393","5":"947","6":"13316.5"},{"1":"567442","2":"KSČM","3":"0.0134595163","4":"393","5":"952","6":"13316.5"},{"1":"567442","2":"ANO","3":"0.0134267723","4":"394","5":"924","6":"13349.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0132654736","4":"398","5":"928","6":"13487.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0132545285","4":"398","5":"962","6":"13501.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0131998030","4":"400","5":"967","6":"13555.0"},{"1":"567442","2":"KSČM","3":"0.0131440589","4":"401","5":"956","6":"13601.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0130041878","4":"405","5":"957","6":"13720.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0128388803","4":"409","5":"938","6":"13863.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0127510535","4":"411","5":"941","6":"13927.0"},{"1":"567442","2":"KSČM","3":"0.0126182965","4":"415","5":"940","6":"14032.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0125082654","4":"418","5":"926","6":"14133.5"},{"1":"567442","2":"PRO Zdraví","3":"0.0125082654","4":"418","5":"932","6":"14133.5"},{"1":"567442","2":"ODS+TOP 09","3":"0.0124993159","4":"418","5":"929","6":"14145.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0124393390","4":"420","5":"943","6":"14206.0"},{"1":"567442","2":"KSČM","3":"0.0123028391","4":"424","5":"949","6":"14334.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0120674454","4":"430","5":"967","6":"14539.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0118470355","4":"436","5":"934","6":"14728.0"},{"1":"567442","2":"KSČM","3":"0.0116719243","4":"440","5":"935","6":"14877.0"},{"1":"567442","2":"ANO","3":"0.0116697136","4":"440","5":"949","6":"14880.0"},{"1":"567442","2":"ANO","3":"0.0116595572","4":"440","5":"951","6":"14887.0"},{"1":"567442","2":"SPD","3":"0.0115929765","4":"443","5":"953","6":"14957.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0115179065","4":"445","5":"939","6":"15023.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0114062156","4":"447","5":"949","6":"15119.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0112261195","4":"452","5":"960","6":"15279.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0111307031","4":"455","5":"956","6":"15357.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0108729037","4":"460","5":"928","6":"15545.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0106898832","4":"465","5":"927","6":"15702.0"},{"1":"567442","2":"SPD","3":"0.0105352232","4":"469","5":"949","6":"15831.0"},{"1":"567442","2":"ANO","3":"0.0105118830","4":"470","5":"933","6":"15856.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0102490633","4":"477","5":"954","6":"16082.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0101939608","4":"478","5":"952","6":"16129.5"},{"1":"567442","2":"PRO Zdraví","3":"0.0101939608","4":"478","5":"966","6":"16129.5"},{"1":"567442","2":"PRO Zdraví","3":"0.0100286533","4":"483","5":"935","6":"16282.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0094139689","4":"499","5":"941","6":"16826.0"},{"1":"567442","2":"ANO","3":"0.0093642088","4":"500","5":"943","6":"16868.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0090453959","4":"509","5":"944","6":"17153.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0088715010","4":"514","5":"946","6":"17312.0"},{"1":"567442","2":"KSČM","3":"0.0088328076","4":"515","5":"964","6":"17357.0"},{"1":"567442","2":"KSČM","3":"0.0086225026","4":"521","5":"951","6":"17545.0"},{"1":"567442","2":"KSČM","3":"0.0085173502","4":"524","5":"932","6":"17638.0"},{"1":"567442","2":"KSČM","3":"0.0083070452","4":"530","5":"929","6":"17827.0"},{"1":"567442","2":"ODS+TOP 09","3":"0.0082416680","4":"532","5":"943","6":"17894.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0078796562","4":"541","5":"969","6":"18222.0"},{"1":"567442","2":"KSČM","3":"0.0076761304","4":"547","5":"931","6":"18416.0"},{"1":"567442","2":"KSČM","3":"0.0070452156","4":"567","5":"933","6":"19071.0"},{"1":"567442","2":"KSČM","3":"0.0069400631","4":"570","5":"924","6":"19169.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0064469914","4":"584","5":"958","6":"19626.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0055653516","4":"609","5":"947","6":"20442.0"},{"1":"567442","2":"KDU+Zel+Pir+NK","3":"0.0053443086","4":"615","5":"924","6":"20660.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0051245316","4":"622","5":"959","6":"20882.0"},{"1":"567442","2":"KSČM","3":"0.0050473186","4":"625","5":"936","6":"20963.0"},{"1":"567442","2":"PRO Zdraví","3":"0.0038571743","4":"661","5":"953","6":"22172.0"},{"1":"567442","2":"KSČM","3":"0.0026288118","4":"705","5":"963","6":"23605.0"},{"1":"567442","2":"KSČM","3":"0.0002103049","4":"864","5":"928","6":"28881.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 282 × 6
-   OBEC   ZKRATKAO8  podil_okrsku_na_strane percentil ID_OKRSKY  rank
-   &lt;chr&gt;  &lt;chr&gt;                       &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 567442 PRO Zdraví                 0.101          1 941          25
- 2 567442 PRO Zdraví                 0.0628         8 943         244
- 3 567442 PRO Zdraví                 0.0500        20 960         655
- 4 567442 KSČM                       0.0493        21 970         701
- 5 567442 PRO Zdraví                 0.0483        23 942         759
- 6 567442 PRO Zdraví                 0.0450        30 965        1001
- 7 567442 PRO Zdraví                 0.0438        34 937        1135
- 8 567442 KSČM                       0.0426        38 959        1272
- 9 567442 PRO Zdraví                 0.0425        38 948        1285
-10 567442 KSČM                       0.0409        44 969        1465
-# … with 272 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  ZKRATKAO8          n
-  &lt;chr&gt;          &lt;dbl&gt;
-1 ANO             3580
-2 KDU+Zel+Pir+NK  1641
-3 KSČM             701
-4 ODS+TOP 09      1565
-5 PRO Zdraví        25
-6 SPD             2055</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -976,17 +967,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-# Groups:   ZKRATKAO8 [6]
-  ZKRATKAO8      `FALSE` `TRUE`
-  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt;
-1 ANO              0.911 0.0886
-2 KDU+Zel+Pir+NK   0.882 0.118 
-3 KSČM             0.867 0.133 
-4 ODS+TOP 09       0.885 0.115 
-5 PRO Zdraví       0.787 0.213 
-6 SPD              0.892 0.108 </code></pre>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["strana"],"name":[1],"type":["chr"],"align":["left"]},{"label":["top 3 nejlepší okrsky strany"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ostatní"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ANO","2":"0.08859435","3":"0.9114056"},{"1":"KDU+Zel+Pir+NK","2":"0.11763622","3":"0.8823638"},{"1":"KSČM","2":"0.13280757","3":"0.8671924"},{"1":"ODS+TOP 09","2":"0.11524107","3":"0.8847589"},{"1":"PRO Zdraví","2":"0.21330174","3":"0.7866983"},{"1":"SPD","2":"0.10808124","3":"0.8919188"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <div class="cell">
@@ -1046,26 +1033,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>   ID_OKRSKY cislo      ZKRATKAO8 POC_HLASU podil_strany
-1        943    20     ODS+TOP 09       753   0.15525773
-2        943    20            SPD      1090   0.22474227
-3        943    20     PRO Zdraví      1139   0.23484536
-4        943    20            ANO       922   0.19010309
-5        943    20           KSČM       136   0.02804124
-6        943    20 KDU+Zel+Pir+NK       810   0.16701031
-7        960    37     ODS+TOP 09      1487   0.24841296
-8        960    37            SPD       956   0.15970598
-9        960    37     PRO Zdraví       908   0.15168727
-10       960    37            ANO      1701   0.28416305
-11       960    37           KSČM       203   0.03391246
-12       960    37 KDU+Zel+Pir+NK       731   0.12211828
-13       941    18     ODS+TOP 09      1165   0.18613197
-14       941    18            SPD      1038   0.16584119
-15       941    18     PRO Zdraví      1824   0.29142035
-16       941    18            ANO      1425   0.22767215
-17       941    18           KSČM       194   0.03099537
-18       941    18 KDU+Zel+Pir+NK       613   0.09793897</code></pre>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID_OKRSKY"],"name":[1],"type":["chr"],"align":["left"]},{"label":["cislo"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ZKRATKAO8"],"name":[3],"type":["chr"],"align":["left"]},{"label":["POC_HLASU"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["podil_strany"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"943","2":"20","3":"ODS+TOP 09","4":"753","5":"0.15525773","_rn_":"1"},{"1":"943","2":"20","3":"SPD","4":"1090","5":"0.22474227","_rn_":"2"},{"1":"943","2":"20","3":"PRO Zdraví","4":"1139","5":"0.23484536","_rn_":"3"},{"1":"943","2":"20","3":"ANO","4":"922","5":"0.19010309","_rn_":"4"},{"1":"943","2":"20","3":"KSČM","4":"136","5":"0.02804124","_rn_":"5"},{"1":"943","2":"20","3":"KDU+Zel+Pir+NK","4":"810","5":"0.16701031","_rn_":"6"},{"1":"960","2":"37","3":"ODS+TOP 09","4":"1487","5":"0.24841296","_rn_":"7"},{"1":"960","2":"37","3":"SPD","4":"956","5":"0.15970598","_rn_":"8"},{"1":"960","2":"37","3":"PRO Zdraví","4":"908","5":"0.15168727","_rn_":"9"},{"1":"960","2":"37","3":"ANO","4":"1701","5":"0.28416305","_rn_":"10"},{"1":"960","2":"37","3":"KSČM","4":"203","5":"0.03391246","_rn_":"11"},{"1":"960","2":"37","3":"KDU+Zel+Pir+NK","4":"731","5":"0.12211828","_rn_":"12"},{"1":"941","2":"18","3":"ODS+TOP 09","4":"1165","5":"0.18613197","_rn_":"13"},{"1":"941","2":"18","3":"SPD","4":"1038","5":"0.16584119","_rn_":"14"},{"1":"941","2":"18","3":"PRO Zdraví","4":"1824","5":"0.29142035","_rn_":"15"},{"1":"941","2":"18","3":"ANO","4":"1425","5":"0.22767215","_rn_":"16"},{"1":"941","2":"18","3":"KSČM","4":"194","5":"0.03099537","_rn_":"17"},{"1":"941","2":"18","3":"KDU+Zel+Pir+NK","4":"613","5":"0.09793897","_rn_":"18"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 </section>
@@ -1075,30 +1049,11 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>               [,1]                                          
-POC_HLASU      "18148"                                       
-recount_mean   "-2313.77"                                    
-recount_median "-2504.533"                                   
-recount_3q     "-2272.136"                                   
-recount_9d     "-1738.624"                                   
-typ            "Všechny okrsky: hladina v rámci všech okrsků"</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>               [,1]                                                      
-POC_HLASU      "18148"                                                   
-recount_mean   "-2414.833"                                               
-recount_median "-2508.617"                                               
-recount_3q     "-2287.159"                                               
-recount_9d     "-1887.783"                                               
-typ            "Okrsky 18 a 20 vyloučeny: hladina v rámci zbylých okrsků"</code></pre>
-</div>
+
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="2100"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -1107,17 +1062,13 @@ typ            "Okrsky 18 a 20 vyloučeny: hladina v rámci zbylých okrsků"</c
 <section id="teplice" class="level2">
 <h2 class="anchored" data-anchor-id="teplice">Teplice</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-# Groups:   ZKRATKAO8 [6]
-  ZKRATKAO8      data            weights         len_wts     ac
-  &lt;chr&gt;          &lt;list&gt;          &lt;list&gt;            &lt;int&gt;  &lt;dbl&gt;
-1 ODS+TOP 09     &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.285 
-2 SPD            &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.175 
-3 PRO Zdraví     &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.0895
-4 ANO            &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.284 
-5 KSČM           &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.139 
-6 KDU+Zel+Pir+NK &lt;SpatVctr[,20]&gt; &lt;dbl [47 × 47]&gt;    2209 0.235 </code></pre>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["strana"],"name":[1],"type":["chr"],"align":["left"]},{"label":["autokorelace"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"ODS+TOP 09","2":"0.28525103"},{"1":"SPD","2":"0.17476375"},{"1":"PRO Zdraví","2":"0.08951653"},{"1":"ANO","2":"0.28438632"},{"1":"KSČM","2":"0.13910743"},{"1":"KDU+Zel+Pir+NK","2":"0.23517747"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <div class="cell">
@@ -1125,7 +1076,7 @@ typ            "Okrsky 18 a 20 vyloučeny: hladina v rámci zbylých okrsků"</c
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="2100"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 <div class="cell">
@@ -1141,41 +1092,51 @@ typ            "Okrsky 18 a 20 vyloučeny: hladina v rámci zbylých okrsků"</c
 
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 276 × 4
-# Groups:   obec_kod, ZKRATKAO8 [276]
-   obec_nazev         obec_kod ZKRATKAO8          ac
-   &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt;           &lt;dbl&gt;
- 1 Blansko            581283   Piráti         -0.220
- 2 Jindřichův Hradec  545881   Patrioti ČR+NK -0.187
- 3 Třebíč             590266   SPD+Trikolora  -0.165
- 4 Třebíč             590266   Piráti+NK      -0.147
- 5 Kladno             532053   PŘÍSAHA        -0.139
- 6 Jablonec nad Nisou 563510   NBPLK+NK       -0.126
- 7 Jindřichův Hradec  545881   SNK ED+NK      -0.120
- 8 Šumperk            523704   Zelení+ČSSD+NK -0.120
- 9 Jindřichův Hradec  545881   JIH 12+NK      -0.118
-10 Karlovy Vary       554961   BEZ-UL+PES     -0.114
-# … with 266 more rows</code></pre>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["obec_nazev"],"name":[1],"type":["chr"],"align":["left"]},{"label":["obec_kod"],"name":[2],"type":["chr"],"align":["left"]},{"label":["strana"],"name":[3],"type":["chr"],"align":["left"]},{"label":["autokorelace"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Blansko","2":"581283","3":"Piráti","4":"-0.2198227497"},{"1":"Jindřichův Hradec","2":"545881","3":"Patrioti ČR+NK","4":"-0.1866192129"},{"1":"Třebíč","2":"590266","3":"SPD+Trikolora","4":"-0.1648674438"},{"1":"Třebíč","2":"590266","3":"Piráti+NK","4":"-0.1467676828"},{"1":"Kladno","2":"532053","3":"PŘÍSAHA","4":"-0.1386195323"},{"1":"Jablonec nad Nisou","2":"563510","3":"NBPLK+NK","4":"-0.1259574251"},{"1":"Jindřichův Hradec","2":"545881","3":"SNK ED+NK","4":"-0.1195565872"},{"1":"Šumperk","2":"523704","3":"Zelení+ČSSD+NK","4":"-0.1195458229"},{"1":"Jindřichův Hradec","2":"545881","3":"JIH 12+NK","4":"-0.1178725216"},{"1":"Karlovy Vary","2":"554961","3":"BEZ-UL+PES","4":"-0.1136945841"},{"1":"Cheb","2":"554481","3":"STAN+NK","4":"-0.1035768983"},{"1":"Znojmo","2":"593711","3":"DOMOV","4":"-0.0979077950"},{"1":"Karlovy Vary","2":"554961","3":"ČSSD","4":"-0.0978354552"},{"1":"Mladá Boleslav","2":"535419","3":"APB+NK","4":"-0.0886247876"},{"1":"Česká Lípa","2":"561380","3":"PŘÍSAHA","4":"-0.0870141970"},{"1":"Znojmo","2":"593711","3":"KDU-ČSL+ODS","4":"-0.0869867867"},{"1":"Frýdek-Místek","2":"598003","3":"ANO","4":"-0.0855596489"},{"1":"Trutnov","2":"579025","3":"Svobod+PRO2022","4":"-0.0832224196"},{"1":"Jihlava","2":"586846","3":"MZH","4":"-0.0810732703"},{"1":"Litoměřice","2":"564567","3":"S.cz+NK","4":"-0.0799341925"},{"1":"Kladno","2":"532053","3":"Zelení+ČSSD","4":"-0.0767139588"},{"1":"Litoměřice","2":"564567","3":"SPD","4":"-0.0752261851"},{"1":"Příbram","2":"539911","3":"KSČM","4":"-0.0747758121"},{"1":"Děčín","2":"562335","3":"DSSS+BEZ-UL","4":"-0.0745576210"},{"1":"Frýdek-Místek","2":"598003","3":"ČSSD+„OSN“","4":"-0.0738314284"},{"1":"Karviná","2":"598917","3":"Piráti","4":"-0.0713719528"},{"1":"Česká Lípa","2":"561380","3":"Nestraníci+NK","4":"-0.0703957582"},{"1":"Třebíč","2":"590266","3":"STAN+NK","4":"-0.0690428142"},{"1":"Příbram","2":"539911","3":"ČSSD+NK","4":"-0.0679821088"},{"1":"Kladno","2":"532053","3":"ODS","4":"-0.0667690681"},{"1":"Orlová","2":"599069","3":"Piráti","4":"-0.0666875445"},{"1":"Cheb","2":"554481","3":"ODS","4":"-0.0666010085"},{"1":"Děčín","2":"562335","3":"ODS","4":"-0.0651682545"},{"1":"Karlovy Vary","2":"554961","3":"SRDCEM PRO+NK","4":"-0.0641219682"},{"1":"Jablonec nad Nisou","2":"563510","3":"KSČM","4":"-0.0616180477"},{"1":"Prostějov","2":"589250","3":"DSZ+NK","4":"-0.0613172255"},{"1":"Přerov","2":"511382","3":"Soukromníci+NK","4":"-0.0612288114"},{"1":"Kladno","2":"532053","3":"KSČM","4":"-0.0599196237"},{"1":"Litoměřice","2":"564567","3":"JsmePRO!+NK","4":"-0.0598865132"},{"1":"Česká Lípa","2":"561380","3":"Piráti","4":"-0.0590649674"},{"1":"Frýdek-Místek","2":"598003","3":"NMFM","4":"-0.0578172395"},{"1":"Prostějov","2":"589250","3":"Zelení+STAN+TOP","4":"-0.0530759362"},{"1":"Přerov","2":"511382","3":"NV+Změna","4":"-0.0526382470"},{"1":"Tábor","2":"552046","3":"DSZ+NK","4":"-0.0525011978"},{"1":"Šumperk","2":"523704","3":"SPD","4":"-0.0462847319"},{"1":"Trutnov","2":"579025","3":"SPD","4":"-0.0438334367"},{"1":"Česká Lípa","2":"561380","3":"DOMOV","4":"-0.0422337846"},{"1":"Karviná","2":"598917","3":"KSČM","4":"-0.0417001974"},{"1":"Přerov","2":"511382","3":"STAN","4":"-0.0401463488"},{"1":"Příbram","2":"539911","3":"SNKED+PŘÍSAH+NK","4":"-0.0365407700"},{"1":"Prostějov","2":"589250","3":"SPD","4":"-0.0358047518"},{"1":"Chomutov","2":"562971","3":"Suver+BEZUL+DOM","4":"-0.0355935484"},{"1":"Prostějov","2":"589250","3":"ČSSD","4":"-0.0355541954"},{"1":"Kladno","2":"532053","3":"KDU-ČSL+TOP 09","4":"-0.0342329551"},{"1":"Třinec","2":"598810","3":"Piráti","4":"-0.0292397229"},{"1":"Orlová","2":"599069","3":"„VO“","4":"-0.0267571399"},{"1":"Jihlava","2":"586846","3":"Zelení+TOP09+NK","4":"-0.0259322694"},{"1":"Prostějov","2":"589250","3":"ANO","4":"-0.0252107359"},{"1":"Jablonec nad Nisou","2":"563510","3":"ODS","4":"-0.0242232917"},{"1":"Havlíčkův Brod","2":"568414","3":"KDU-ČSL","4":"-0.0236859311"},{"1":"Příbram","2":"539911","3":"KDU-ČSL+NK","4":"-0.0232530048"},{"1":"Mladá Boleslav","2":"535419","3":"KSČM+NK","4":"-0.0217809526"},{"1":"Karlovy Vary","2":"554961","3":"Trikolora","4":"-0.0214863431"},{"1":"Jablonec nad Nisou","2":"563510","3":"NEZ+NK","4":"-0.0214746355"},{"1":"Karlovy Vary","2":"554961","3":"PŘÍS+PRO2022+NK","4":"-0.0195978949"},{"1":"Havlíčkův Brod","2":"568414","3":"SNK ED+NK","4":"-0.0193111397"},{"1":"Cheb","2":"554481","3":"DSZ+NK","4":"-0.0175071373"},{"1":"Děčín","2":"562335","3":"Svobod+Trikolor","4":"-0.0156850055"},{"1":"Most","2":"567027","3":"NS+NK","4":"-0.0122273911"},{"1":"Cheb","2":"554481","3":"ANO","4":"-0.0114789150"},{"1":"Frýdek-Místek","2":"598003","3":"FraM","4":"-0.0114345467"},{"1":"Litoměřice","2":"564567","3":"DSZ+NK","4":"-0.0113642680"},{"1":"Příbram","2":"539911","3":"Nestraníci+NK","4":"-0.0088976451"},{"1":"Havlíčkův Brod","2":"568414","3":"Zelení+NK","4":"-0.0088518396"},{"1":"Blansko","2":"581283","3":"ČSSD","4":"-0.0069389745"},{"1":"Trutnov","2":"579025","3":"Zelení+NK","4":"-0.0066020728"},{"1":"Šumperk","2":"523704","3":"NEZ+NK","4":"-0.0065700786"},{"1":"Karlovy Vary","2":"554961","3":"KSČM","4":"-0.0059436513"},{"1":"Most","2":"567027","3":"ČSSD","4":"-0.0058545698"},{"1":"Jihlava","2":"586846","3":"ČSSD+Levice","4":"-0.0054853718"},{"1":"Orlová","2":"599069","3":"ČSSD","4":"-0.0042414326"},{"1":"Blansko","2":"581283","3":"KDU-ČSL","4":"-0.0037487742"},{"1":"Litoměřice","2":"564567","3":"KDUZelPirTOPNK","4":"-0.0036829414"},{"1":"Třinec","2":"598810","3":"STAN+NK","4":"-0.0001823681"},{"1":"Šumperk","2":"523704","3":"TOP+STAN","4":"0.0004460510"},{"1":"Třebíč","2":"590266","3":"ODS+TnT","4":"0.0005082419"},{"1":"Trutnov","2":"579025","3":"Piráti","4":"0.0006229825"},{"1":"Chomutov","2":"562971","3":"LS+NK","4":"0.0012711432"},{"1":"Orlová","2":"599069","3":"KSČM","4":"0.0028693448"},{"1":"Přerov","2":"511382","3":"KDU-ČSL+TOP 09","4":"0.0034269843"},{"1":"Třebíč","2":"590266","3":"KDU-ČSL","4":"0.0036813539"},{"1":"Trutnov","2":"579025","3":"SproK+NK","4":"0.0050484631"},{"1":"Trutnov","2":"579025","3":"VPM","4":"0.0052122587"},{"1":"Třebíč","2":"590266","3":"KSČM","4":"0.0052418696"},{"1":"Cheb","2":"554481","3":"KSČM","4":"0.0056671912"},{"1":"Příbram","2":"539911","3":"ODS","4":"0.0070239891"},{"1":"Mladá Boleslav","2":"535419","3":"STAN","4":"0.0077403314"},{"1":"Jihlava","2":"586846","3":"MSVC","4":"0.0090803205"},{"1":"Děčín","2":"562335","3":"ČSSD","4":"0.0092305998"},{"1":"Most","2":"567027","3":"DSZ+NK","4":"0.0112580719"},{"1":"Děčín","2":"562335","3":"MHNHRM+NK","4":"0.0127092787"},{"1":"Příbram","2":"539911","3":"Piráti","4":"0.0129049597"},{"1":"Tábor","2":"552046","3":"DOMOV+NK","4":"0.0140404138"},{"1":"Třebíč","2":"590266","3":"ČSSD+NK","4":"0.0152732430"},{"1":"Frýdek-Místek","2":"598003","3":"DSZ+NK","4":"0.0168246211"},{"1":"Šumperk","2":"523704","3":"ODS","4":"0.0199057568"},{"1":"Česká Lípa","2":"561380","3":"Trikolora","4":"0.0206716150"},{"1":"Orlová","2":"599069","3":"NEZ","4":"0.0250937993"},{"1":"Přerov","2":"511382","3":"ANO","4":"0.0264336843"},{"1":"Jindřichův Hradec","2":"545881","3":"ČSSD","4":"0.0270387534"},{"1":"Litoměřice","2":"564567","3":"STAN+NK","4":"0.0280073491"},{"1":"Prostějov","2":"589250","3":"PV","4":"0.0302592771"},{"1":"Chomutov","2":"562971","3":"KSČM","4":"0.0304563234"},{"1":"Havlíčkův Brod","2":"568414","3":"ODS","4":"0.0305859615"},{"1":"Šumperk","2":"523704","3":"NV+NK","4":"0.0306466932"},{"1":"Chomutov","2":"562971","3":"SV PRO ZS","4":"0.0314572028"},{"1":"Cheb","2":"554481","3":"VOK","4":"0.0327620207"},{"1":"Havlíčkův Brod","2":"568414","3":"SPD","4":"0.0368500966"},{"1":"Tábor","2":"552046","3":"KDU-ČSL+NK","4":"0.0369464566"},{"1":"Prostějov","2":"589250","3":"KSČM+NK","4":"0.0372482945"},{"1":"Blansko","2":"581283","3":"ANO","4":"0.0384946141"},{"1":"Most","2":"567027","3":"ProMOST","4":"0.0389047738"},{"1":"Znojmo","2":"593711","3":"Piráti","4":"0.0397149410"},{"1":"Znojmo","2":"593711","3":"Svobodní+NK","4":"0.0404896569"},{"1":"Přerov","2":"511382","3":"Piráti+NK","4":"0.0408193182"},{"1":"Jindřichův Hradec","2":"545881","3":"STAN","4":"0.0412303882"},{"1":"Mladá Boleslav","2":"535419","3":"ČSSD+NK","4":"0.0427009153"},{"1":"Blansko","2":"581283","3":"SPD+NK","4":"0.0456067272"},{"1":"Přerov","2":"511382","3":"ČSSD","4":"0.0466022192"},{"1":"Znojmo","2":"593711","3":"ČSSD+KSČM+SPOZ","4":"0.0467791488"},{"1":"Blansko","2":"581283","3":"Idealisté+NK","4":"0.0470164575"},{"1":"Jihlava","2":"586846","3":"STAN+NK","4":"0.0487225546"},{"1":"Přerov","2":"511382","3":"KSČM","4":"0.0491360539"},{"1":"Blansko","2":"581283","3":"ODS","4":"0.0527916140"},{"1":"Karviná","2":"598917","3":"STAN","4":"0.0528925176"},{"1":"Prostějov","2":"589250","3":"Piráti","4":"0.0536367618"},{"1":"Znojmo","2":"593711","3":"SOM+NK","4":"0.0554525794"},{"1":"Karlovy Vary","2":"554961","3":"KVC","4":"0.0563519441"},{"1":"Jablonec nad Nisou","2":"563510","3":"PRO 2022","4":"0.0566536991"},{"1":"Jindřichův Hradec","2":"545881","3":"NEZ+NK","4":"0.0576667599"},{"1":"Most","2":"567027","3":"SPD+Trikolora","4":"0.0645199619"},{"1":"Šumperk","2":"523704","3":"ANO+NK","4":"0.0655551665"},{"1":"Děčín","2":"562335","3":"Praha+PROZdraví","4":"0.0657454560"},{"1":"Znojmo","2":"593711","3":"SPD+NK","4":"0.0670803300"},{"1":"Jindřichův Hradec","2":"545881","3":"KSČM+DOMOV","4":"0.0679807695"},{"1":"Tábor","2":"552046","3":"Piráti","4":"0.0698127159"},{"1":"Česká Lípa","2":"561380","3":"ANO","4":"0.0699767560"},{"1":"Litoměřice","2":"564567","3":"ODS","4":"0.0709750939"},{"1":"Šumperk","2":"523704","3":"KSČM","4":"0.0713918296"},{"1":"Šumperk","2":"523704","3":"KDU-ČSL+NK","4":"0.0715736457"},{"1":"Jihlava","2":"586846","3":"Svobodní+NK","4":"0.0731820157"},{"1":"Most","2":"567027","3":"OMMO","4":"0.0734185086"},{"1":"Frýdek-Místek","2":"598003","3":"SPD","4":"0.0759006261"},{"1":"Frýdek-Místek","2":"598003","3":"KSČM","4":"0.0760191618"},{"1":"Děčín","2":"562335","3":"Piráti","4":"0.0775775803"},{"1":"Havlíčkův Brod","2":"568414","3":"KSČM","4":"0.0827526925"},{"1":"Jablonec nad Nisou","2":"563510","3":"SPD","4":"0.0833245304"},{"1":"Třebíč","2":"590266","3":"SNK ED+NK","4":"0.0835454864"},{"1":"Česká Lípa","2":"561380","3":"KSČM","4":"0.0846123163"},{"1":"Přerov","2":"511382","3":"SPD","4":"0.0858380995"},{"1":"Frýdek-Místek","2":"598003","3":"KDU+ODS+TOP 09","4":"0.0874660860"},{"1":"Litoměřice","2":"564567","3":"KSČM+NK","4":"0.0883897668"},{"1":"Havlíčkův Brod","2":"568414","3":"TOP 09","4":"0.0894641032"},{"1":"Teplice","2":"567442","3":"PRO Zdraví","4":"0.0895165255"},{"1":"Třebíč","2":"590266","3":"OPAT","4":"0.0910066916"},{"1":"Česká Lípa","2":"561380","3":"ČSSD","4":"0.0938043164"},{"1":"Trutnov","2":"579025","3":"KDUČSL+TOP09+NK","4":"0.0948151871"},{"1":"Litoměřice","2":"564567","3":"ANO","4":"0.0954648768"},{"1":"Třinec","2":"598810","3":"ANO","4":"0.0968426978"},{"1":"Jihlava","2":"586846","3":"KSČM","4":"0.0979053843"},{"1":"Příbram","2":"539911","3":"Monarchiste+NK","4":"0.0997598069"},{"1":"Cheb","2":"554481","3":"KDU+Zel+TOP+NK","4":"0.1012353183"},{"1":"Jindřichův Hradec","2":"545881","3":"KDU-ČSL+NK","4":"0.1030757026"},{"1":"Znojmo","2":"593711","3":"PŘÍSAHA","4":"0.1032944591"},{"1":"Jablonec nad Nisou","2":"563510","3":"TOP 09+NK","4":"0.1057702494"},{"1":"Děčín","2":"562335","3":"STAN+NK","4":"0.1067631332"},{"1":"Havlíčkův Brod","2":"568414","3":"ŽB+ANO","4":"0.1108995846"},{"1":"Děčín","2":"562335","3":"KSČM","4":"0.1183441372"},{"1":"Příbram","2":"539911","3":"STAN+TOP+Hl+NK","4":"0.1328227620"},{"1":"Karviná","2":"598917","3":"SPD","4":"0.1334171048"},{"1":"Česká Lípa","2":"561380","3":"KDU+ODS+TOP 09","4":"0.1343221174"},{"1":"Šumperk","2":"523704","3":"Rozumní","4":"0.1351930282"},{"1":"Karlovy Vary","2":"554961","3":"KDU+ODS+TOP 09","4":"0.1352452392"},{"1":"Trutnov","2":"579025","3":"ANO","4":"0.1365414195"},{"1":"Třebíč","2":"590266","3":"KAN+NK","4":"0.1365962102"},{"1":"Jihlava","2":"586846","3":"ANO","4":"0.1367297123"},{"1":"Karlovy Vary","2":"554961","3":"SPD","4":"0.1371904216"},{"1":"Příbram","2":"539911","3":"DSSS","4":"0.1388925409"},{"1":"Třebíč","2":"590266","3":"Zelení+NK","4":"0.1389473521"},{"1":"Teplice","2":"567442","3":"KSČM","4":"0.1391074310"},{"1":"Trutnov","2":"579025","3":"KSČM","4":"0.1409923777"},{"1":"Znojmo","2":"593711","3":"TOP 09","4":"0.1412834191"},{"1":"Třebíč","2":"590266","3":"ANO","4":"0.1420352422"},{"1":"Most","2":"567027","3":"KSČM","4":"0.1425475865"},{"1":"Havlíčkův Brod","2":"568414","3":"Piráti+NK","4":"0.1434518374"},{"1":"Jablonec nad Nisou","2":"563510","3":"SLK","4":"0.1467903523"},{"1":"Trutnov","2":"579025","3":"BPS+NK","4":"0.1473195184"},{"1":"Havlíčkův Brod","2":"568414","3":"ČSSD+PŘÍSAHA+NK","4":"0.1493000991"},{"1":"Přerov","2":"511382","3":"ODS+NK","4":"0.1502987191"},{"1":"Jihlava","2":"586846","3":"KDU-ČSL+ODS","4":"0.1508508783"},{"1":"Příbram","2":"539911","3":"SPD","4":"0.1527805516"},{"1":"Trutnov","2":"579025","3":"STAN+NK","4":"0.1533633846"},{"1":"Třebíč","2":"590266","3":"DOMOV+NK","4":"0.1538414218"},{"1":"Jindřichův Hradec","2":"545881","3":"SPD","4":"0.1560412644"},{"1":"Orlová","2":"599069","3":"BZ","4":"0.1571061804"},{"1":"Jablonec nad Nisou","2":"563510","3":"ANO","4":"0.1593532452"},{"1":"Jihlava","2":"586846","3":"Piráti+NK","4":"0.1651900297"},{"1":"Frýdek-Místek","2":"598003","3":"Piráti","4":"0.1659228929"},{"1":"Kladno","2":"532053","3":"STAN+Piráti","4":"0.1666034955"},{"1":"Česká Lípa","2":"561380","3":"SLK+NK","4":"0.1682436896"},{"1":"Most","2":"567027","3":"ANO","4":"0.1708715657"},{"1":"Orlová","2":"599069","3":"Soukromníci","4":"0.1724671225"},{"1":"Teplice","2":"567442","3":"SPD","4":"0.1747637465"},{"1":"Děčín","2":"562335","3":"SPD","4":"0.1758402724"},{"1":"Orlová","2":"599069","3":"SPD+Trikolora","4":"0.1765943569"},{"1":"Kladno","2":"532053","3":"VPK","4":"0.1780561543"},{"1":"Cheb","2":"554481","3":"SPD","4":"0.1783739474"},{"1":"Jablonec nad Nisou","2":"563510","3":"Piráti+NK","4":"0.1809152571"},{"1":"Prostějov","2":"589250","3":"ODS+NK","4":"0.1847843376"},{"1":"Třinec","2":"598810","3":"ODS+TOP 09","4":"0.1849969029"},{"1":"Mladá Boleslav","2":"535419","3":"SPD","4":"0.1921642670"},{"1":"Chomutov","2":"562971","3":"STAN","4":"0.1945617129"},{"1":"Orlová","2":"599069","3":"KDU+ODS+TOP 09","4":"0.1946520130"},{"1":"Jindřichův Hradec","2":"545881","3":"Piráti+NK","4":"0.1980453116"},{"1":"Šumperk","2":"523704","3":"Piráti","4":"0.2003620316"},{"1":"Karviná","2":"598917","3":"KDU+ODS+TOP 09","4":"0.2004023341"},{"1":"Jindřichův Hradec","2":"545881","3":"Svobodní+NK","4":"0.2065844620"},{"1":"Znojmo","2":"593711","3":"ANO","4":"0.2075783585"},{"1":"Blansko","2":"581283","3":"KSČM","4":"0.2088443976"},{"1":"Jablonec nad Nisou","2":"563510","3":"KDUČSL+Zel.+NK","4":"0.2128426843"},{"1":"Třinec","2":"598810","3":"KDU-ČSL","4":"0.2145784619"},{"1":"Prostějov","2":"589250","3":"KDU-ČSL+NK","4":"0.2157931478"},{"1":"Znojmo","2":"593711","3":"STAN+MZH+NK","4":"0.2229973268"},{"1":"Česká Lípa","2":"561380","3":"SPD","4":"0.2251661879"},{"1":"Teplice","2":"567442","3":"KDU+Zel+Pir+NK","4":"0.2351774714"},{"1":"Děčín","2":"562335","3":"ANO","4":"0.2377813217"},{"1":"Karlovy Vary","2":"554961","3":"Piráti","4":"0.2435148656"},{"1":"Tábor","2":"552046","3":"ODS+TOP 09","4":"0.2442562037"},{"1":"Tábor","2":"552046","3":"T2020","4":"0.2465703630"},{"1":"Třinec","2":"598810","3":"ČSSD+NK","4":"0.2475191454"},{"1":"Tábor","2":"552046","3":"Zelení+NK","4":"0.2500919930"},{"1":"Cheb","2":"554481","3":"Piráti","4":"0.2521406771"},{"1":"Jindřichův Hradec","2":"545881","3":"ODS","4":"0.2550021485"},{"1":"Mladá Boleslav","2":"535419","3":"ODS+TOP 09+NK","4":"0.2565004852"},{"1":"Jihlava","2":"586846","3":"SPD+Trikolora","4":"0.2611531469"},{"1":"Mladá Boleslav","2":"535419","3":"VpMB+ANO","4":"0.2671641538"},{"1":"Jindřichův Hradec","2":"545881","3":"ANO","4":"0.2694444829"},{"1":"Přerov","2":"511382","3":"NEZ+NK","4":"0.2742518410"},{"1":"Chomutov","2":"562971","3":"MODES","4":"0.2744564525"},{"1":"Kladno","2":"532053","3":"ANO","4":"0.2777892398"},{"1":"Teplice","2":"567442","3":"ANO","4":"0.2843863202"},{"1":"Teplice","2":"567442","3":"ODS+TOP 09","4":"0.2852510333"},{"1":"Karviná","2":"598917","3":"ANO","4":"0.2875640748"},{"1":"Trutnov","2":"579025","3":"ODS","4":"0.2907151581"},{"1":"Most","2":"567027","3":"Zelení+Piráti","4":"0.2921544058"},{"1":"Chomutov","2":"562971","3":"NS","4":"0.2998236151"},{"1":"Mladá Boleslav","2":"535419","3":"KDU-ČSL+Zelení","4":"0.3023067983"},{"1":"Karlovy Vary","2":"554961","3":"STAN","4":"0.3059583184"},{"1":"Třebíč","2":"590266","3":"TOP 09","4":"0.3220573954"},{"1":"Kladno","2":"532053","3":"SPD","4":"0.3221807096"},{"1":"Příbram","2":"539911","3":"ANO","4":"0.3223593357"},{"1":"Karlovy Vary","2":"554961","3":"ANO","4":"0.3291377593"},{"1":"Blansko","2":"581283","3":"STAN+NK","4":"0.3322648493"},{"1":"Karviná","2":"598917","3":"ČSSD","4":"0.3342746138"},{"1":"Chomutov","2":"562971","3":"KDUPirTOPJsPrNK","4":"0.3510552472"},{"1":"Orlová","2":"599069","3":"ANO","4":"0.3603520414"},{"1":"Most","2":"567027","3":"ODS+NK","4":"0.3605721509"},{"1":"Tábor","2":"552046","3":"ANO","4":"0.3926314508"},{"1":"Karlovy Vary","2":"554961","3":"KOA","4":"0.3978806647"},{"1":"Chomutov","2":"562971","3":"ODS","4":"0.4067858367"},{"1":"Tábor","2":"552046","3":"ČSSDKSČMSPDNK","4":"0.4069841256"},{"1":"Chomutov","2":"562971","3":"SPD+PRO 2022","4":"0.4096305303"},{"1":"Jihlava","2":"586846","3":"SZZJ","4":"0.4382250351"},{"1":"Třinec","2":"598810","3":"NEZ","4":"0.4520922721"},{"1":"Česká Lípa","2":"561380","3":"Svobodní","4":"0.4527459412"},{"1":"Chomutov","2":"562971","3":"ANO","4":"0.5184035551"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="2100"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
 </section>
 <section id="rozdělení-podobně-neúspěšných-stran-v-podobně-velkých-městech" class="level1">
 <h1>Rozdělení podobně (ne)úspěšných stran v podobně velkých městech</h1>
-<div class="cell">
+<p>(Strany s 3–8 % hlasů, ve městech s 30 až 70 okrsky)</p>
+<div class="cell" data-fig.asp="2.5">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="2100"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 <div class="cell">
+
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="2100"></p>
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["obec_nazev"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ZKRATKAO8"],"name":[2],"type":["chr"],"align":["left"]},{"label":["v_skew"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["v_kurtosis"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["v_normality_value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Přerov","2":"ČSSD","3":"3.91483379","4":"20.234392952","5":"0.6333849"},{"1":"Karlovy Vary","2":"Trikolora","3":"3.51550771","4":"15.568999703","5":"0.6324245"},{"1":"Příbram","2":"ČSSD+NK","3":"3.29838607","4":"14.229915174","5":"0.6705187"},{"1":"Jihlava","2":"SZZJ","3":"2.90569237","4":"11.195854882","5":"0.7139501"},{"1":"Most","2":"ODS+NK","3":"3.03950929","4":"9.813585055","5":"0.6185061"},{"1":"Jihlava","2":"MZH","3":"2.70791294","4":"9.790492294","5":"0.7110450"},{"1":"Česká Lípa","2":"Svobodní","3":"2.37167377","4":"7.692125878","5":"0.7743921"},{"1":"Karviná","2":"KDU+ODS+TOP 09","3":"2.60782745","4":"7.387146060","5":"0.6936310"},{"1":"Příbram","2":"SNKED+PŘÍSAH+NK","3":"2.31380253","4":"7.357240659","5":"0.7877259"},{"1":"Teplice","2":"PRO Zdraví","3":"2.36614351","4":"6.767012187","5":"0.7324418"},{"1":"Tábor","2":"Zelení+NK","3":"2.40840734","4":"6.629707528","5":"0.7329364"},{"1":"Česká Lípa","2":"Piráti","3":"1.98236595","4":"6.037135323","5":"0.8342449"},{"1":"Chomutov","2":"MODES","3":"1.82779811","4":"5.672786287","5":"0.8309307"},{"1":"Most","2":"Zelení+Piráti","3":"1.69503943","4":"5.191230108","5":"0.8710041"},{"1":"Havlíčkův Brod","2":"Piráti+NK","3":"1.85707573","4":"4.989163880","5":"0.8306242"},{"1":"Děčín","2":"ČSSD","3":"1.76226728","4":"4.883490670","5":"0.8617009"},{"1":"Karlovy Vary","2":"BEZ-UL+PES","3":"2.21048656","4":"4.748252812","5":"0.7022170"},{"1":"Třinec","2":"ODS+TOP 09","3":"2.09231529","4":"4.676274209","5":"0.7536777"},{"1":"Jablonec nad Nisou","2":"NEZ+NK","3":"1.63819029","4":"4.493114041","5":"0.8780079"},{"1":"Orlová","2":"Soukromníci","3":"2.04424448","4":"4.118617754","5":"0.7504030"},{"1":"Česká Lípa","2":"Trikolora","3":"1.91884419","4":"3.971733936","5":"0.7794662"},{"1":"Česká Lípa","2":"PŘÍSAHA","3":"1.42785702","4":"3.946800049","5":"0.8853408"},{"1":"Jihlava","2":"Svobodní+NK","3":"1.54391400","4":"3.910321385","5":"0.8890786"},{"1":"Příbram","2":"KDU-ČSL+NK","3":"1.63593638","4":"3.867874780","5":"0.8643646"},{"1":"Orlová","2":"BZ","3":"1.65589473","4":"3.332810063","5":"0.8408806"},{"1":"Blansko","2":"ČSSD","3":"1.46619219","4":"3.206093979","5":"0.8854033"},{"1":"Příbram","2":"DSSS","3":"1.92968249","4":"3.086223486","5":"0.6674439"},{"1":"Tábor","2":"Piráti","3":"1.25550388","4":"3.084239337","5":"0.9138940"},{"1":"Třinec","2":"KDU-ČSL","3":"1.63776401","4":"3.053417256","5":"0.8275824"},{"1":"Třinec","2":"ČSSD+NK","3":"1.75920137","4":"2.931704762","5":"0.7957379"},{"1":"Přerov","2":"KDU-ČSL+TOP 09","3":"1.74906299","4":"2.875117468","5":"0.8069931"},{"1":"Blansko","2":"STAN+NK","3":"1.21881073","4":"2.735919977","5":"0.8704949"},{"1":"Frýdek-Místek","2":"FraM","3":"1.54363222","4":"2.571021152","5":"0.8562480"},{"1":"Třebíč","2":"ODS+TnT","3":"0.99642214","4":"2.346862657","5":"0.9261114"},{"1":"Příbram","2":"Nestraníci+NK","3":"1.02787895","4":"2.134798050","5":"0.9208411"},{"1":"Chomutov","2":"KSČM","3":"1.14524768","4":"2.048701078","5":"0.9243863"},{"1":"Příbram","2":"KSČM","3":"1.06291970","4":"2.031280895","5":"0.9274774"},{"1":"Kladno","2":"SPD","3":"1.13611402","4":"1.966303954","5":"0.9258787"},{"1":"Šumperk","2":"Zelení+ČSSD+NK","3":"1.20429565","4":"1.925486792","5":"0.9057294"},{"1":"Přerov","2":"Soukromníci+NK","3":"1.27164648","4":"1.808249696","5":"0.8971339"},{"1":"Karviná","2":"Piráti","3":"1.05190361","4":"1.762637583","5":"0.9225365"},{"1":"Prostějov","2":"PV","3":"1.34554587","4":"1.749299244","5":"0.8798580"},{"1":"Česká Lípa","2":"KDU+ODS+TOP 09","3":"1.13253918","4":"1.703321033","5":"0.9144236"},{"1":"Jihlava","2":"Zelení+TOP09+NK","3":"0.96019419","4":"1.676399128","5":"0.9247691"},{"1":"Litoměřice","2":"STAN+NK","3":"0.81873605","4":"1.450115770","5":"0.9477318"},{"1":"Znojmo","2":"PŘÍSAHA","3":"1.17910443","4":"1.391078003","5":"0.9078909"},{"1":"Jindřichův Hradec","2":"KDU-ČSL+NK","3":"1.41496720","4":"1.389655359","5":"0.8305295"},{"1":"Děčín","2":"Piráti","3":"0.90547422","4":"1.378431437","5":"0.9409423"},{"1":"Příbram","2":"ODS","3":"1.14437922","4":"1.358407529","5":"0.9144323"},{"1":"Příbram","2":"Piráti","3":"0.90521212","4":"1.351531228","5":"0.9383373"},{"1":"Havlíčkův Brod","2":"SNK ED+NK","3":"0.74027000","4":"1.254109146","5":"0.9459328"},{"1":"Cheb","2":"ODS","3":"1.04832153","4":"1.222250541","5":"0.9102043"},{"1":"Jindřichův Hradec","2":"ČSSD","3":"1.10115644","4":"1.175251639","5":"0.9127087"},{"1":"Znojmo","2":"Svobodní+NK","3":"0.75725306","4":"1.168680382","5":"0.9506222"},{"1":"Šumperk","2":"Rozumní","3":"0.84607828","4":"1.144408100","5":"0.9262689"},{"1":"Karlovy Vary","2":"PŘÍS+PRO2022+NK","3":"0.96456036","4":"1.111768962","5":"0.9328212"},{"1":"Česká Lípa","2":"KSČM","3":"0.99664865","4":"1.090230652","5":"0.9251150"},{"1":"Prostějov","2":"Piráti","3":"0.80242039","4":"1.089103164","5":"0.9489363"},{"1":"Jindřichův Hradec","2":"STAN","3":"1.20004770","4":"1.086135571","5":"0.8854255"},{"1":"Karlovy Vary","2":"STAN","3":"0.97594546","4":"1.057383942","5":"0.9373734"},{"1":"Tábor","2":"DSZ+NK","3":"1.14456152","4":"0.960326540","5":"0.8995990"},{"1":"Kladno","2":"Zelení+ČSSD","3":"1.11920029","4":"0.953764811","5":"0.8941435"},{"1":"Přerov","2":"STAN","3":"1.01679577","4":"0.940147062","5":"0.9102263"},{"1":"Trutnov","2":"SproK+NK","3":"1.12754549","4":"0.931819023","5":"0.8995063"},{"1":"Prostějov","2":"KSČM+NK","3":"0.91509158","4":"0.903336761","5":"0.9203295"},{"1":"Orlová","2":"KDU+ODS+TOP 09","3":"1.00719977","4":"0.881791577","5":"0.9269296"},{"1":"Prostějov","2":"KDU-ČSL+NK","3":"0.99315596","4":"0.815310646","5":"0.9290219"},{"1":"Tábor","2":"KDU-ČSL+NK","3":"1.22846269","4":"0.799842585","5":"0.8642559"},{"1":"Trutnov","2":"BPS+NK","3":"1.05500174","4":"0.755742757","5":"0.8986222"},{"1":"Jindřichův Hradec","2":"KSČM+DOMOV","3":"0.93185421","4":"0.670457469","5":"0.9285503"},{"1":"Děčín","2":"STAN+NK","3":"0.93285494","4":"0.634208113","5":"0.9355943"},{"1":"Jihlava","2":"STAN+NK","3":"0.85357065","4":"0.629191253","5":"0.9448768"},{"1":"Šumperk","2":"NEZ+NK","3":"0.51840370","4":"0.613073665","5":"0.9651846"},{"1":"Jindřichův Hradec","2":"Patrioti ČR+NK","3":"0.92785840","4":"0.565528740","5":"0.9324978"},{"1":"Jihlava","2":"MSVC","3":"1.07993043","4":"0.563429319","5":"0.8757526"},{"1":"Most","2":"DSZ+NK","3":"0.99935689","4":"0.559974129","5":"0.9068386"},{"1":"Karviná","2":"STAN","3":"0.89322289","4":"0.504417951","5":"0.9316659"},{"1":"Šumperk","2":"KSČM","3":"-0.12860480","4":"0.493692504","5":"0.9831545"},{"1":"Jablonec nad Nisou","2":"PRO 2022","3":"0.78595397","4":"0.468554335","5":"0.9534712"},{"1":"Česká Lípa","2":"SPD","3":"0.84371784","4":"0.463344887","5":"0.9391482"},{"1":"Třebíč","2":"OPAT","3":"0.98005812","4":"0.442344114","5":"0.8887195"},{"1":"Mladá Boleslav","2":"ČSSD+NK","3":"0.68197096","4":"0.415057096","5":"0.9595956"},{"1":"Frýdek-Místek","2":"Piráti","3":"0.88705923","4":"0.370619998","5":"0.9349107"},{"1":"Přerov","2":"NEZ+NK","3":"0.89897309","4":"0.341422719","5":"0.9174416"},{"1":"Děčín","2":"ODS","3":"0.55564539","4":"0.307042132","5":"0.9621893"},{"1":"Chomutov","2":"LS+NK","3":"0.63153164","4":"0.303901776","5":"0.9551128"},{"1":"Jindřichův Hradec","2":"Piráti+NK","3":"0.89675668","4":"0.256027736","5":"0.9246957"},{"1":"Jablonec nad Nisou","2":"NBPLK+NK","3":"0.73781032","4":"0.247392241","5":"0.9547308"},{"1":"Most","2":"OMMO","3":"0.89037936","4":"0.238012292","5":"0.9091884"},{"1":"Karlovy Vary","2":"SRDCEM PRO+NK","3":"0.67109099","4":"0.231667094","5":"0.9634450"},{"1":"Orlová","2":"KSČM","3":"0.89133805","4":"0.217387310","5":"0.9159932"},{"1":"Šumperk","2":"ODS","3":"0.87119222","4":"0.204266742","5":"0.9323253"},{"1":"Tábor","2":"DOMOV+NK","3":"0.88328947","4":"0.193512747","5":"0.9283550"},{"1":"Třebíč","2":"KDU-ČSL","3":"0.94790659","4":"0.184845718","5":"0.8952290"},{"1":"Děčín","2":"Praha+PROZdraví","3":"0.58907970","4":"0.165879473","5":"0.9584138"},{"1":"Třebíč","2":"KSČM","3":"0.22751685","4":"0.132626567","5":"0.9650640"},{"1":"Jindřichův Hradec","2":"SNK ED+NK","3":"0.85183670","4":"-0.005957753","5":"0.9086471"},{"1":"Trutnov","2":"KDUČSL+TOP09+NK","3":"0.33720746","4":"-0.014231841","5":"0.9590184"},{"1":"Most","2":"KSČM","3":"0.39366073","4":"-0.038625565","5":"0.9784491"},{"1":"Kladno","2":"KSČM","3":"0.47823140","4":"-0.042058115","5":"0.9757199"},{"1":"Most","2":"ČSSD","3":"0.74148860","4":"-0.048414883","5":"0.9391056"},{"1":"Cheb","2":"KSČM","3":"0.70698047","4":"-0.066727017","5":"0.9340311"},{"1":"Havlíčkův Brod","2":"TOP 09","3":"0.64419591","4":"-0.093185638","5":"0.9571737"},{"1":"Jindřichův Hradec","2":"SPD","3":"0.48360588","4":"-0.107074196","5":"0.9706893"},{"1":"Jablonec nad Nisou","2":"TOP 09+NK","3":"0.54271313","4":"-0.107181340","5":"0.9664060"},{"1":"Litoměřice","2":"DSZ+NK","3":"0.67578017","4":"-0.140991871","5":"0.9368166"},{"1":"Znojmo","2":"Piráti","3":"0.35224182","4":"-0.160437204","5":"0.9540341"},{"1":"Jindřichův Hradec","2":"JIH 12+NK","3":"0.81487604","4":"-0.165924480","5":"0.9182714"},{"1":"Cheb","2":"DSZ+NK","3":"0.69841265","4":"-0.169248561","5":"0.9338054"},{"1":"Jihlava","2":"Piráti+NK","3":"-0.27981521","4":"-0.199107440","5":"0.9765316"},{"1":"Česká Lípa","2":"ČSSD","3":"0.54839219","4":"-0.201300666","5":"0.9646961"},{"1":"Třebíč","2":"DOMOV+NK","3":"0.99254077","4":"-0.205627260","5":"0.8558644"},{"1":"Karviná","2":"SPD","3":"0.15739168","4":"-0.207241242","5":"0.9890478"},{"1":"Most","2":"NS+NK","3":"0.12238537","4":"-0.217874454","5":"0.9923584"},{"1":"Znojmo","2":"TOP 09","3":"0.56880637","4":"-0.230441745","5":"0.9501239"},{"1":"Orlová","2":"„VO“","3":"0.65333066","4":"-0.262813443","5":"0.9446614"},{"1":"Znojmo","2":"ČSSD+KSČM+SPOZ","3":"0.17022611","4":"-0.283626555","5":"0.9728730"},{"1":"Trutnov","2":"KSČM","3":"0.33566257","4":"-0.285855400","5":"0.9680834"},{"1":"Česká Lípa","2":"DOMOV","3":"0.92204371","4":"-0.288432485","5":"0.8674726"},{"1":"Jihlava","2":"KSČM","3":"0.27444211","4":"-0.299186582","5":"0.9796229"},{"1":"Karlovy Vary","2":"ČSSD","3":"0.62686820","4":"-0.335051728","5":"0.9514510"},{"1":"Litoměřice","2":"KSČM+NK","3":"0.60355153","4":"-0.342498585","5":"0.9417606"},{"1":"Přerov","2":"Piráti+NK","3":"0.09405842","4":"-0.361157104","5":"0.9888910"},{"1":"Třebíč","2":"SNK ED+NK","3":"0.64311323","4":"-0.371371151","5":"0.9493820"},{"1":"Chomutov","2":"Suver+BEZUL+DOM","3":"0.74672939","4":"-0.375964130","5":"0.9252748"},{"1":"Trutnov","2":"SPD","3":"0.54239406","4":"-0.395033570","5":"0.9454307"},{"1":"Karviná","2":"KSČM","3":"0.57302419","4":"-0.404363511","5":"0.9541861"},{"1":"Frýdek-Místek","2":"KSČM","3":"0.61728132","4":"-0.406817704","5":"0.9456558"},{"1":"Trutnov","2":"Piráti","3":"0.29485835","4":"-0.433549788","5":"0.9686838"},{"1":"Třebíč","2":"TOP 09","3":"0.76494192","4":"-0.438289252","5":"0.9070024"},{"1":"Kladno","2":"KDU-ČSL+TOP 09","3":"0.60656950","4":"-0.448890190","5":"0.9468770"},{"1":"Mladá Boleslav","2":"KSČM+NK","3":"0.33849236","4":"-0.459498054","5":"0.9753049"},{"1":"Česká Lípa","2":"Nestraníci+NK","3":"0.74888897","4":"-0.477306580","5":"0.9110488"},{"1":"Blansko","2":"SPD+NK","3":"0.26744459","4":"-0.513569296","5":"0.9788015"},{"1":"Šumperk","2":"Piráti","3":"0.32370323","4":"-0.516283402","5":"0.9850048"},{"1":"Třebíč","2":"ČSSD+NK","3":"0.16721339","4":"-0.517732719","5":"0.9766361"},{"1":"Přerov","2":"NV+Změna","3":"0.17703852","4":"-0.524742457","5":"0.9750056"},{"1":"Přerov","2":"KSČM","3":"0.40045549","4":"-0.527911469","5":"0.9696570"},{"1":"Cheb","2":"Piráti","3":"0.32964811","4":"-0.529492371","5":"0.9731873"},{"1":"Kladno","2":"PŘÍSAHA","3":"0.56050200","4":"-0.546071423","5":"0.9484528"},{"1":"Litoměřice","2":"KDUZelPirTOPNK","3":"0.07908044","4":"-0.553202417","5":"0.9813035"},{"1":"Mladá Boleslav","2":"APB+NK","3":"0.26819534","4":"-0.567684405","5":"0.9780510"},{"1":"Karlovy Vary","2":"KSČM","3":"0.52515663","4":"-0.586395031","5":"0.9499421"},{"1":"Litoměřice","2":"SPD","3":"0.11911467","4":"-0.602219707","5":"0.9683528"},{"1":"Trutnov","2":"Zelení+NK","3":"0.14410364","4":"-0.616558043","5":"0.9750104"},{"1":"Karlovy Vary","2":"Piráti","3":"0.09743431","4":"-0.657599047","5":"0.9874048"},{"1":"Chomutov","2":"ODS","3":"0.45066218","4":"-0.658789395","5":"0.9544519"},{"1":"Orlová","2":"Piráti","3":"0.24971446","4":"-0.661020979","5":"0.9662104"},{"1":"Jihlava","2":"SPD+Trikolora","3":"-0.25712218","4":"-0.689107801","5":"0.9744657"},{"1":"Děčín","2":"Svobod+Trikolor","3":"0.55801466","4":"-0.696601471","5":"0.9432826"},{"1":"Děčín","2":"DSSS+BEZ-UL","3":"0.27617944","4":"-0.711270468","5":"0.9638456"},{"1":"Teplice","2":"KSČM","3":"0.28352318","4":"-0.716612932","5":"0.9781107"},{"1":"Havlíčkův Brod","2":"KSČM","3":"0.54348344","4":"-0.718443035","5":"0.9471852"},{"1":"Jihlava","2":"ČSSD+Levice","3":"0.46976305","4":"-0.720864047","5":"0.9575894"},{"1":"Frýdek-Místek","2":"DSZ+NK","3":"0.43120786","4":"-0.755640125","5":"0.9525051"},{"1":"Havlíčkův Brod","2":"SPD","3":"0.31699368","4":"-0.757573852","5":"0.9723924"},{"1":"Jablonec nad Nisou","2":"KSČM","3":"0.65715689","4":"-0.763466900","5":"0.9166084"},{"1":"Příbram","2":"Monarchiste+NK","3":"0.27256873","4":"-0.787503548","5":"0.9719944"},{"1":"Prostějov","2":"DSZ+NK","3":"0.02457340","4":"-0.791916554","5":"0.9771429"},{"1":"Litoměřice","2":"S.cz+NK","3":"-0.09138335","4":"-0.792811835","5":"0.9692633"},{"1":"Znojmo","2":"DOMOV","3":"0.22719201","4":"-0.804455278","5":"0.9586580"},{"1":"Orlová","2":"ČSSD","3":"0.15742803","4":"-0.855869221","5":"0.9775861"},{"1":"Příbram","2":"SPD","3":"0.02151746","4":"-0.857624430","5":"0.9828091"},{"1":"Trutnov","2":"Svobod+PRO2022","3":"0.43011966","4":"-0.932275687","5":"0.9444311"},{"1":"Havlíčkův Brod","2":"Zelení+NK","3":"0.35038756","4":"-0.969892056","5":"0.9402914"},{"1":"Třebíč","2":"Piráti+NK","3":"0.01785864","4":"-0.992416799","5":"0.9765046"},{"1":"Znojmo","2":"STAN+MZH+NK","3":"0.12707607","4":"-1.013974043","5":"0.9726210"},{"1":"Chomutov","2":"SV PRO ZS","3":"0.36845853","4":"-1.023118109","5":"0.9485982"},{"1":"Mladá Boleslav","2":"SPD","3":"-0.35672278","4":"-1.028338658","5":"0.9470515"},{"1":"Prostějov","2":"ČSSD","3":"0.25005716","4":"-1.032545321","5":"0.9599416"},{"1":"Děčín","2":"KSČM","3":"0.29522149","4":"-1.044259197","5":"0.9500708"},{"1":"Třebíč","2":"SPD+Trikolora","3":"-0.04458482","4":"-1.050772693","5":"0.9515387"},{"1":"Blansko","2":"Piráti","3":"0.03020909","4":"-1.115218610","5":"0.9672740"},{"1":"Trutnov","2":"STAN+NK","3":"0.09468324","4":"-1.133058002","5":"0.9613450"},{"1":"Blansko","2":"KSČM","3":"0.21139123","4":"-1.154453944","5":"0.9576520"},{"1":"Chomutov","2":"STAN","3":"0.23288735","4":"-1.160555520","5":"0.9470478"},{"1":"Třebíč","2":"Zelení+NK","3":"0.15574585","4":"-1.162562969","5":"0.9534068"},{"1":"Třinec","2":"Piráti","3":"0.30486671","4":"-1.211477700","5":"0.9434672"},{"1":"Havlíčkův Brod","2":"ČSSD+PŘÍSAHA+NK","3":"-0.03149303","4":"-1.574502219","5":"0.9136609"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["obec_nazev"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ZKRATKAO8"],"name":[2],"type":["chr"],"align":["left"]},{"label":["name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["value"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Přerov","2":"ČSSD","3":"v_skew","4":"3.914833785"},{"1":"Přerov","2":"ČSSD","3":"v_kurtosis","4":"20.234392952"},{"1":"Přerov","2":"ČSSD","3":"v_normality_value","4":"0.633384938"},{"1":"Karlovy Vary","2":"Trikolora","3":"v_skew","4":"3.515507713"},{"1":"Karlovy Vary","2":"Trikolora","3":"v_kurtosis","4":"15.568999703"},{"1":"Karlovy Vary","2":"Trikolora","3":"v_normality_value","4":"0.632424461"},{"1":"Příbram","2":"ČSSD+NK","3":"v_skew","4":"3.298386070"},{"1":"Příbram","2":"ČSSD+NK","3":"v_kurtosis","4":"14.229915174"},{"1":"Příbram","2":"ČSSD+NK","3":"v_normality_value","4":"0.670518671"},{"1":"Jihlava","2":"SZZJ","3":"v_skew","4":"2.905692374"},{"1":"Jihlava","2":"SZZJ","3":"v_kurtosis","4":"11.195854882"},{"1":"Jihlava","2":"SZZJ","3":"v_normality_value","4":"0.713950062"},{"1":"Most","2":"ODS+NK","3":"v_skew","4":"3.039509291"},{"1":"Most","2":"ODS+NK","3":"v_kurtosis","4":"9.813585055"},{"1":"Most","2":"ODS+NK","3":"v_normality_value","4":"0.618506071"},{"1":"Jihlava","2":"MZH","3":"v_skew","4":"2.707912936"},{"1":"Jihlava","2":"MZH","3":"v_kurtosis","4":"9.790492294"},{"1":"Jihlava","2":"MZH","3":"v_normality_value","4":"0.711045036"},{"1":"Česká Lípa","2":"Svobodní","3":"v_skew","4":"2.371673769"},{"1":"Česká Lípa","2":"Svobodní","3":"v_kurtosis","4":"7.692125878"},{"1":"Česká Lípa","2":"Svobodní","3":"v_normality_value","4":"0.774392057"},{"1":"Karviná","2":"KDU+ODS+TOP 09","3":"v_skew","4":"2.607827453"},{"1":"Karviná","2":"KDU+ODS+TOP 09","3":"v_kurtosis","4":"7.387146060"},{"1":"Karviná","2":"KDU+ODS+TOP 09","3":"v_normality_value","4":"0.693630980"},{"1":"Příbram","2":"SNKED+PŘÍSAH+NK","3":"v_skew","4":"2.313802531"},{"1":"Příbram","2":"SNKED+PŘÍSAH+NK","3":"v_kurtosis","4":"7.357240659"},{"1":"Příbram","2":"SNKED+PŘÍSAH+NK","3":"v_normality_value","4":"0.787725937"},{"1":"Teplice","2":"PRO Zdraví","3":"v_skew","4":"2.366143508"},{"1":"Teplice","2":"PRO Zdraví","3":"v_kurtosis","4":"6.767012187"},{"1":"Teplice","2":"PRO Zdraví","3":"v_normality_value","4":"0.732441762"},{"1":"Tábor","2":"Zelení+NK","3":"v_skew","4":"2.408407340"},{"1":"Tábor","2":"Zelení+NK","3":"v_kurtosis","4":"6.629707528"},{"1":"Tábor","2":"Zelení+NK","3":"v_normality_value","4":"0.732936353"},{"1":"Česká Lípa","2":"Piráti","3":"v_skew","4":"1.982365953"},{"1":"Česká Lípa","2":"Piráti","3":"v_kurtosis","4":"6.037135323"},{"1":"Česká Lípa","2":"Piráti","3":"v_normality_value","4":"0.834244911"},{"1":"Chomutov","2":"MODES","3":"v_skew","4":"1.827798106"},{"1":"Chomutov","2":"MODES","3":"v_kurtosis","4":"5.672786287"},{"1":"Chomutov","2":"MODES","3":"v_normality_value","4":"0.830930738"},{"1":"Most","2":"Zelení+Piráti","3":"v_skew","4":"1.695039429"},{"1":"Most","2":"Zelení+Piráti","3":"v_kurtosis","4":"5.191230108"},{"1":"Most","2":"Zelení+Piráti","3":"v_normality_value","4":"0.871004122"},{"1":"Havlíčkův Brod","2":"Piráti+NK","3":"v_skew","4":"1.857075726"},{"1":"Havlíčkův Brod","2":"Piráti+NK","3":"v_kurtosis","4":"4.989163880"},{"1":"Havlíčkův Brod","2":"Piráti+NK","3":"v_normality_value","4":"0.830624197"},{"1":"Děčín","2":"ČSSD","3":"v_skew","4":"1.762267284"},{"1":"Děčín","2":"ČSSD","3":"v_kurtosis","4":"4.883490670"},{"1":"Děčín","2":"ČSSD","3":"v_normality_value","4":"0.861700917"},{"1":"Karlovy Vary","2":"BEZ-UL+PES","3":"v_skew","4":"2.210486563"},{"1":"Karlovy Vary","2":"BEZ-UL+PES","3":"v_kurtosis","4":"4.748252812"},{"1":"Karlovy Vary","2":"BEZ-UL+PES","3":"v_normality_value","4":"0.702216970"},{"1":"Třinec","2":"ODS+TOP 09","3":"v_skew","4":"2.092315286"},{"1":"Třinec","2":"ODS+TOP 09","3":"v_kurtosis","4":"4.676274209"},{"1":"Třinec","2":"ODS+TOP 09","3":"v_normality_value","4":"0.753677733"},{"1":"Jablonec nad Nisou","2":"NEZ+NK","3":"v_skew","4":"1.638190294"},{"1":"Jablonec nad Nisou","2":"NEZ+NK","3":"v_kurtosis","4":"4.493114041"},{"1":"Jablonec nad Nisou","2":"NEZ+NK","3":"v_normality_value","4":"0.878007904"},{"1":"Orlová","2":"Soukromníci","3":"v_skew","4":"2.044244485"},{"1":"Orlová","2":"Soukromníci","3":"v_kurtosis","4":"4.118617754"},{"1":"Orlová","2":"Soukromníci","3":"v_normality_value","4":"0.750403000"},{"1":"Česká Lípa","2":"Trikolora","3":"v_skew","4":"1.918844194"},{"1":"Česká Lípa","2":"Trikolora","3":"v_kurtosis","4":"3.971733936"},{"1":"Česká Lípa","2":"Trikolora","3":"v_normality_value","4":"0.779466199"},{"1":"Česká Lípa","2":"PŘÍSAHA","3":"v_skew","4":"1.427857018"},{"1":"Česká Lípa","2":"PŘÍSAHA","3":"v_kurtosis","4":"3.946800049"},{"1":"Česká Lípa","2":"PŘÍSAHA","3":"v_normality_value","4":"0.885340825"},{"1":"Jihlava","2":"Svobodní+NK","3":"v_skew","4":"1.543913997"},{"1":"Jihlava","2":"Svobodní+NK","3":"v_kurtosis","4":"3.910321385"},{"1":"Jihlava","2":"Svobodní+NK","3":"v_normality_value","4":"0.889078639"},{"1":"Příbram","2":"KDU-ČSL+NK","3":"v_skew","4":"1.635936381"},{"1":"Příbram","2":"KDU-ČSL+NK","3":"v_kurtosis","4":"3.867874780"},{"1":"Příbram","2":"KDU-ČSL+NK","3":"v_normality_value","4":"0.864364581"},{"1":"Orlová","2":"BZ","3":"v_skew","4":"1.655894732"},{"1":"Orlová","2":"BZ","3":"v_kurtosis","4":"3.332810063"},{"1":"Orlová","2":"BZ","3":"v_normality_value","4":"0.840880646"},{"1":"Blansko","2":"ČSSD","3":"v_skew","4":"1.466192192"},{"1":"Blansko","2":"ČSSD","3":"v_kurtosis","4":"3.206093979"},{"1":"Blansko","2":"ČSSD","3":"v_normality_value","4":"0.885403331"},{"1":"Příbram","2":"DSSS","3":"v_skew","4":"1.929682493"},{"1":"Příbram","2":"DSSS","3":"v_kurtosis","4":"3.086223486"},{"1":"Příbram","2":"DSSS","3":"v_normality_value","4":"0.667443868"},{"1":"Tábor","2":"Piráti","3":"v_skew","4":"1.255503884"},{"1":"Tábor","2":"Piráti","3":"v_kurtosis","4":"3.084239337"},{"1":"Tábor","2":"Piráti","3":"v_normality_value","4":"0.913894024"},{"1":"Třinec","2":"KDU-ČSL","3":"v_skew","4":"1.637764012"},{"1":"Třinec","2":"KDU-ČSL","3":"v_kurtosis","4":"3.053417256"},{"1":"Třinec","2":"KDU-ČSL","3":"v_normality_value","4":"0.827582421"},{"1":"Třinec","2":"ČSSD+NK","3":"v_skew","4":"1.759201367"},{"1":"Třinec","2":"ČSSD+NK","3":"v_kurtosis","4":"2.931704762"},{"1":"Třinec","2":"ČSSD+NK","3":"v_normality_value","4":"0.795737909"},{"1":"Přerov","2":"KDU-ČSL+TOP 09","3":"v_skew","4":"1.749062995"},{"1":"Přerov","2":"KDU-ČSL+TOP 09","3":"v_kurtosis","4":"2.875117468"},{"1":"Přerov","2":"KDU-ČSL+TOP 09","3":"v_normality_value","4":"0.806993080"},{"1":"Blansko","2":"STAN+NK","3":"v_skew","4":"1.218810729"},{"1":"Blansko","2":"STAN+NK","3":"v_kurtosis","4":"2.735919977"},{"1":"Blansko","2":"STAN+NK","3":"v_normality_value","4":"0.870494894"},{"1":"Frýdek-Místek","2":"FraM","3":"v_skew","4":"1.543632222"},{"1":"Frýdek-Místek","2":"FraM","3":"v_kurtosis","4":"2.571021152"},{"1":"Frýdek-Místek","2":"FraM","3":"v_normality_value","4":"0.856247999"},{"1":"Třebíč","2":"ODS+TnT","3":"v_skew","4":"0.996422140"},{"1":"Třebíč","2":"ODS+TnT","3":"v_kurtosis","4":"2.346862657"},{"1":"Třebíč","2":"ODS+TnT","3":"v_normality_value","4":"0.926111364"},{"1":"Příbram","2":"Nestraníci+NK","3":"v_skew","4":"1.027878954"},{"1":"Příbram","2":"Nestraníci+NK","3":"v_kurtosis","4":"2.134798050"},{"1":"Příbram","2":"Nestraníci+NK","3":"v_normality_value","4":"0.920841149"},{"1":"Chomutov","2":"KSČM","3":"v_skew","4":"1.145247678"},{"1":"Chomutov","2":"KSČM","3":"v_kurtosis","4":"2.048701078"},{"1":"Chomutov","2":"KSČM","3":"v_normality_value","4":"0.924386306"},{"1":"Příbram","2":"KSČM","3":"v_skew","4":"1.062919698"},{"1":"Příbram","2":"KSČM","3":"v_kurtosis","4":"2.031280895"},{"1":"Příbram","2":"KSČM","3":"v_normality_value","4":"0.927477392"},{"1":"Kladno","2":"SPD","3":"v_skew","4":"1.136114017"},{"1":"Kladno","2":"SPD","3":"v_kurtosis","4":"1.966303954"},{"1":"Kladno","2":"SPD","3":"v_normality_value","4":"0.925878666"},{"1":"Šumperk","2":"Zelení+ČSSD+NK","3":"v_skew","4":"1.204295649"},{"1":"Šumperk","2":"Zelení+ČSSD+NK","3":"v_kurtosis","4":"1.925486792"},{"1":"Šumperk","2":"Zelení+ČSSD+NK","3":"v_normality_value","4":"0.905729431"},{"1":"Přerov","2":"Soukromníci+NK","3":"v_skew","4":"1.271646484"},{"1":"Přerov","2":"Soukromníci+NK","3":"v_kurtosis","4":"1.808249696"},{"1":"Přerov","2":"Soukromníci+NK","3":"v_normality_value","4":"0.897133864"},{"1":"Karviná","2":"Piráti","3":"v_skew","4":"1.051903607"},{"1":"Karviná","2":"Piráti","3":"v_kurtosis","4":"1.762637583"},{"1":"Karviná","2":"Piráti","3":"v_normality_value","4":"0.922536494"},{"1":"Prostějov","2":"PV","3":"v_skew","4":"1.345545875"},{"1":"Prostějov","2":"PV","3":"v_kurtosis","4":"1.749299244"},{"1":"Prostějov","2":"PV","3":"v_normality_value","4":"0.879857963"},{"1":"Česká Lípa","2":"KDU+ODS+TOP 09","3":"v_skew","4":"1.132539177"},{"1":"Česká Lípa","2":"KDU+ODS+TOP 09","3":"v_kurtosis","4":"1.703321033"},{"1":"Česká Lípa","2":"KDU+ODS+TOP 09","3":"v_normality_value","4":"0.914423568"},{"1":"Jihlava","2":"Zelení+TOP09+NK","3":"v_skew","4":"0.960194186"},{"1":"Jihlava","2":"Zelení+TOP09+NK","3":"v_kurtosis","4":"1.676399128"},{"1":"Jihlava","2":"Zelení+TOP09+NK","3":"v_normality_value","4":"0.924769086"},{"1":"Litoměřice","2":"STAN+NK","3":"v_skew","4":"0.818736046"},{"1":"Litoměřice","2":"STAN+NK","3":"v_kurtosis","4":"1.450115770"},{"1":"Litoměřice","2":"STAN+NK","3":"v_normality_value","4":"0.947731785"},{"1":"Znojmo","2":"PŘÍSAHA","3":"v_skew","4":"1.179104428"},{"1":"Znojmo","2":"PŘÍSAHA","3":"v_kurtosis","4":"1.391078003"},{"1":"Znojmo","2":"PŘÍSAHA","3":"v_normality_value","4":"0.907890889"},{"1":"Jindřichův Hradec","2":"KDU-ČSL+NK","3":"v_skew","4":"1.414967205"},{"1":"Jindřichův Hradec","2":"KDU-ČSL+NK","3":"v_kurtosis","4":"1.389655359"},{"1":"Jindřichův Hradec","2":"KDU-ČSL+NK","3":"v_normality_value","4":"0.830529513"},{"1":"Děčín","2":"Piráti","3":"v_skew","4":"0.905474216"},{"1":"Děčín","2":"Piráti","3":"v_kurtosis","4":"1.378431437"},{"1":"Děčín","2":"Piráti","3":"v_normality_value","4":"0.940942317"},{"1":"Příbram","2":"ODS","3":"v_skew","4":"1.144379222"},{"1":"Příbram","2":"ODS","3":"v_kurtosis","4":"1.358407529"},{"1":"Příbram","2":"ODS","3":"v_normality_value","4":"0.914432333"},{"1":"Příbram","2":"Piráti","3":"v_skew","4":"0.905212116"},{"1":"Příbram","2":"Piráti","3":"v_kurtosis","4":"1.351531228"},{"1":"Příbram","2":"Piráti","3":"v_normality_value","4":"0.938337304"},{"1":"Havlíčkův Brod","2":"SNK ED+NK","3":"v_skew","4":"0.740270003"},{"1":"Havlíčkův Brod","2":"SNK ED+NK","3":"v_kurtosis","4":"1.254109146"},{"1":"Havlíčkův Brod","2":"SNK ED+NK","3":"v_normality_value","4":"0.945932819"},{"1":"Cheb","2":"ODS","3":"v_skew","4":"1.048321526"},{"1":"Cheb","2":"ODS","3":"v_kurtosis","4":"1.222250541"},{"1":"Cheb","2":"ODS","3":"v_normality_value","4":"0.910204303"},{"1":"Jindřichův Hradec","2":"ČSSD","3":"v_skew","4":"1.101156439"},{"1":"Jindřichův Hradec","2":"ČSSD","3":"v_kurtosis","4":"1.175251639"},{"1":"Jindřichův Hradec","2":"ČSSD","3":"v_normality_value","4":"0.912708684"},{"1":"Znojmo","2":"Svobodní+NK","3":"v_skew","4":"0.757253061"},{"1":"Znojmo","2":"Svobodní+NK","3":"v_kurtosis","4":"1.168680382"},{"1":"Znojmo","2":"Svobodní+NK","3":"v_normality_value","4":"0.950622217"},{"1":"Šumperk","2":"Rozumní","3":"v_skew","4":"0.846078281"},{"1":"Šumperk","2":"Rozumní","3":"v_kurtosis","4":"1.144408100"},{"1":"Šumperk","2":"Rozumní","3":"v_normality_value","4":"0.926268893"},{"1":"Karlovy Vary","2":"PŘÍS+PRO2022+NK","3":"v_skew","4":"0.964560361"},{"1":"Karlovy Vary","2":"PŘÍS+PRO2022+NK","3":"v_kurtosis","4":"1.111768962"},{"1":"Karlovy Vary","2":"PŘÍS+PRO2022+NK","3":"v_normality_value","4":"0.932821159"},{"1":"Česká Lípa","2":"KSČM","3":"v_skew","4":"0.996648652"},{"1":"Česká Lípa","2":"KSČM","3":"v_kurtosis","4":"1.090230652"},{"1":"Česká Lípa","2":"KSČM","3":"v_normality_value","4":"0.925114957"},{"1":"Prostějov","2":"Piráti","3":"v_skew","4":"0.802420388"},{"1":"Prostějov","2":"Piráti","3":"v_kurtosis","4":"1.089103164"},{"1":"Prostějov","2":"Piráti","3":"v_normality_value","4":"0.948936290"},{"1":"Jindřichův Hradec","2":"STAN","3":"v_skew","4":"1.200047704"},{"1":"Jindřichův Hradec","2":"STAN","3":"v_kurtosis","4":"1.086135571"},{"1":"Jindřichův Hradec","2":"STAN","3":"v_normality_value","4":"0.885425541"},{"1":"Karlovy Vary","2":"STAN","3":"v_skew","4":"0.975945465"},{"1":"Karlovy Vary","2":"STAN","3":"v_kurtosis","4":"1.057383942"},{"1":"Karlovy Vary","2":"STAN","3":"v_normality_value","4":"0.937373424"},{"1":"Tábor","2":"DSZ+NK","3":"v_skew","4":"1.144561520"},{"1":"Tábor","2":"DSZ+NK","3":"v_kurtosis","4":"0.960326540"},{"1":"Tábor","2":"DSZ+NK","3":"v_normality_value","4":"0.899599011"},{"1":"Kladno","2":"Zelení+ČSSD","3":"v_skew","4":"1.119200286"},{"1":"Kladno","2":"Zelení+ČSSD","3":"v_kurtosis","4":"0.953764811"},{"1":"Kladno","2":"Zelení+ČSSD","3":"v_normality_value","4":"0.894143528"},{"1":"Přerov","2":"STAN","3":"v_skew","4":"1.016795768"},{"1":"Přerov","2":"STAN","3":"v_kurtosis","4":"0.940147062"},{"1":"Přerov","2":"STAN","3":"v_normality_value","4":"0.910226332"},{"1":"Trutnov","2":"SproK+NK","3":"v_skew","4":"1.127545489"},{"1":"Trutnov","2":"SproK+NK","3":"v_kurtosis","4":"0.931819023"},{"1":"Trutnov","2":"SproK+NK","3":"v_normality_value","4":"0.899506266"},{"1":"Prostějov","2":"KSČM+NK","3":"v_skew","4":"0.915091579"},{"1":"Prostějov","2":"KSČM+NK","3":"v_kurtosis","4":"0.903336761"},{"1":"Prostějov","2":"KSČM+NK","3":"v_normality_value","4":"0.920329524"},{"1":"Orlová","2":"KDU+ODS+TOP 09","3":"v_skew","4":"1.007199765"},{"1":"Orlová","2":"KDU+ODS+TOP 09","3":"v_kurtosis","4":"0.881791577"},{"1":"Orlová","2":"KDU+ODS+TOP 09","3":"v_normality_value","4":"0.926929632"},{"1":"Prostějov","2":"KDU-ČSL+NK","3":"v_skew","4":"0.993155962"},{"1":"Prostějov","2":"KDU-ČSL+NK","3":"v_kurtosis","4":"0.815310646"},{"1":"Prostějov","2":"KDU-ČSL+NK","3":"v_normality_value","4":"0.929021937"},{"1":"Tábor","2":"KDU-ČSL+NK","3":"v_skew","4":"1.228462686"},{"1":"Tábor","2":"KDU-ČSL+NK","3":"v_kurtosis","4":"0.799842585"},{"1":"Tábor","2":"KDU-ČSL+NK","3":"v_normality_value","4":"0.864255864"},{"1":"Trutnov","2":"BPS+NK","3":"v_skew","4":"1.055001743"},{"1":"Trutnov","2":"BPS+NK","3":"v_kurtosis","4":"0.755742757"},{"1":"Trutnov","2":"BPS+NK","3":"v_normality_value","4":"0.898622190"},{"1":"Jindřichův Hradec","2":"KSČM+DOMOV","3":"v_skew","4":"0.931854214"},{"1":"Jindřichův Hradec","2":"KSČM+DOMOV","3":"v_kurtosis","4":"0.670457469"},{"1":"Jindřichův Hradec","2":"KSČM+DOMOV","3":"v_normality_value","4":"0.928550350"},{"1":"Děčín","2":"STAN+NK","3":"v_skew","4":"0.932854944"},{"1":"Děčín","2":"STAN+NK","3":"v_kurtosis","4":"0.634208113"},{"1":"Děčín","2":"STAN+NK","3":"v_normality_value","4":"0.935594316"},{"1":"Jihlava","2":"STAN+NK","3":"v_skew","4":"0.853570645"},{"1":"Jihlava","2":"STAN+NK","3":"v_kurtosis","4":"0.629191253"},{"1":"Jihlava","2":"STAN+NK","3":"v_normality_value","4":"0.944876794"},{"1":"Šumperk","2":"NEZ+NK","3":"v_skew","4":"0.518403703"},{"1":"Šumperk","2":"NEZ+NK","3":"v_kurtosis","4":"0.613073665"},{"1":"Šumperk","2":"NEZ+NK","3":"v_normality_value","4":"0.965184632"},{"1":"Jindřichův Hradec","2":"Patrioti ČR+NK","3":"v_skew","4":"0.927858402"},{"1":"Jindřichův Hradec","2":"Patrioti ČR+NK","3":"v_kurtosis","4":"0.565528740"},{"1":"Jindřichův Hradec","2":"Patrioti ČR+NK","3":"v_normality_value","4":"0.932497836"},{"1":"Jihlava","2":"MSVC","3":"v_skew","4":"1.079930435"},{"1":"Jihlava","2":"MSVC","3":"v_kurtosis","4":"0.563429319"},{"1":"Jihlava","2":"MSVC","3":"v_normality_value","4":"0.875752569"},{"1":"Most","2":"DSZ+NK","3":"v_skew","4":"0.999356888"},{"1":"Most","2":"DSZ+NK","3":"v_kurtosis","4":"0.559974129"},{"1":"Most","2":"DSZ+NK","3":"v_normality_value","4":"0.906838602"},{"1":"Karviná","2":"STAN","3":"v_skew","4":"0.893222890"},{"1":"Karviná","2":"STAN","3":"v_kurtosis","4":"0.504417951"},{"1":"Karviná","2":"STAN","3":"v_normality_value","4":"0.931665917"},{"1":"Šumperk","2":"KSČM","3":"v_skew","4":"-0.128604805"},{"1":"Šumperk","2":"KSČM","3":"v_kurtosis","4":"0.493692504"},{"1":"Šumperk","2":"KSČM","3":"v_normality_value","4":"0.983154455"},{"1":"Jablonec nad Nisou","2":"PRO 2022","3":"v_skew","4":"0.785953967"},{"1":"Jablonec nad Nisou","2":"PRO 2022","3":"v_kurtosis","4":"0.468554335"},{"1":"Jablonec nad Nisou","2":"PRO 2022","3":"v_normality_value","4":"0.953471233"},{"1":"Česká Lípa","2":"SPD","3":"v_skew","4":"0.843717838"},{"1":"Česká Lípa","2":"SPD","3":"v_kurtosis","4":"0.463344887"},{"1":"Česká Lípa","2":"SPD","3":"v_normality_value","4":"0.939148236"},{"1":"Třebíč","2":"OPAT","3":"v_skew","4":"0.980058124"},{"1":"Třebíč","2":"OPAT","3":"v_kurtosis","4":"0.442344114"},{"1":"Třebíč","2":"OPAT","3":"v_normality_value","4":"0.888719476"},{"1":"Mladá Boleslav","2":"ČSSD+NK","3":"v_skew","4":"0.681970960"},{"1":"Mladá Boleslav","2":"ČSSD+NK","3":"v_kurtosis","4":"0.415057096"},{"1":"Mladá Boleslav","2":"ČSSD+NK","3":"v_normality_value","4":"0.959595615"},{"1":"Frýdek-Místek","2":"Piráti","3":"v_skew","4":"0.887059232"},{"1":"Frýdek-Místek","2":"Piráti","3":"v_kurtosis","4":"0.370619998"},{"1":"Frýdek-Místek","2":"Piráti","3":"v_normality_value","4":"0.934910712"},{"1":"Přerov","2":"NEZ+NK","3":"v_skew","4":"0.898973094"},{"1":"Přerov","2":"NEZ+NK","3":"v_kurtosis","4":"0.341422719"},{"1":"Přerov","2":"NEZ+NK","3":"v_normality_value","4":"0.917441560"},{"1":"Děčín","2":"ODS","3":"v_skew","4":"0.555645393"},{"1":"Děčín","2":"ODS","3":"v_kurtosis","4":"0.307042132"},{"1":"Děčín","2":"ODS","3":"v_normality_value","4":"0.962189266"},{"1":"Chomutov","2":"LS+NK","3":"v_skew","4":"0.631531644"},{"1":"Chomutov","2":"LS+NK","3":"v_kurtosis","4":"0.303901776"},{"1":"Chomutov","2":"LS+NK","3":"v_normality_value","4":"0.955112784"},{"1":"Jindřichův Hradec","2":"Piráti+NK","3":"v_skew","4":"0.896756685"},{"1":"Jindřichův Hradec","2":"Piráti+NK","3":"v_kurtosis","4":"0.256027736"},{"1":"Jindřichův Hradec","2":"Piráti+NK","3":"v_normality_value","4":"0.924695681"},{"1":"Jablonec nad Nisou","2":"NBPLK+NK","3":"v_skew","4":"0.737810316"},{"1":"Jablonec nad Nisou","2":"NBPLK+NK","3":"v_kurtosis","4":"0.247392241"},{"1":"Jablonec nad Nisou","2":"NBPLK+NK","3":"v_normality_value","4":"0.954730771"},{"1":"Most","2":"OMMO","3":"v_skew","4":"0.890379363"},{"1":"Most","2":"OMMO","3":"v_kurtosis","4":"0.238012292"},{"1":"Most","2":"OMMO","3":"v_normality_value","4":"0.909188376"},{"1":"Karlovy Vary","2":"SRDCEM PRO+NK","3":"v_skew","4":"0.671090990"},{"1":"Karlovy Vary","2":"SRDCEM PRO+NK","3":"v_kurtosis","4":"0.231667094"},{"1":"Karlovy Vary","2":"SRDCEM PRO+NK","3":"v_normality_value","4":"0.963445017"},{"1":"Orlová","2":"KSČM","3":"v_skew","4":"0.891338048"},{"1":"Orlová","2":"KSČM","3":"v_kurtosis","4":"0.217387310"},{"1":"Orlová","2":"KSČM","3":"v_normality_value","4":"0.915993185"},{"1":"Šumperk","2":"ODS","3":"v_skew","4":"0.871192221"},{"1":"Šumperk","2":"ODS","3":"v_kurtosis","4":"0.204266742"},{"1":"Šumperk","2":"ODS","3":"v_normality_value","4":"0.932325277"},{"1":"Tábor","2":"DOMOV+NK","3":"v_skew","4":"0.883289470"},{"1":"Tábor","2":"DOMOV+NK","3":"v_kurtosis","4":"0.193512747"},{"1":"Tábor","2":"DOMOV+NK","3":"v_normality_value","4":"0.928355006"},{"1":"Třebíč","2":"KDU-ČSL","3":"v_skew","4":"0.947906594"},{"1":"Třebíč","2":"KDU-ČSL","3":"v_kurtosis","4":"0.184845718"},{"1":"Třebíč","2":"KDU-ČSL","3":"v_normality_value","4":"0.895228959"},{"1":"Děčín","2":"Praha+PROZdraví","3":"v_skew","4":"0.589079702"},{"1":"Děčín","2":"Praha+PROZdraví","3":"v_kurtosis","4":"0.165879473"},{"1":"Děčín","2":"Praha+PROZdraví","3":"v_normality_value","4":"0.958413793"},{"1":"Třebíč","2":"KSČM","3":"v_skew","4":"0.227516846"},{"1":"Třebíč","2":"KSČM","3":"v_kurtosis","4":"0.132626567"},{"1":"Třebíč","2":"KSČM","3":"v_normality_value","4":"0.965063968"},{"1":"Jindřichův Hradec","2":"SNK ED+NK","3":"v_skew","4":"0.851836700"},{"1":"Jindřichův Hradec","2":"SNK ED+NK","3":"v_kurtosis","4":"-0.005957753"},{"1":"Jindřichův Hradec","2":"SNK ED+NK","3":"v_normality_value","4":"0.908647090"},{"1":"Trutnov","2":"KDUČSL+TOP09+NK","3":"v_skew","4":"0.337207456"},{"1":"Trutnov","2":"KDUČSL+TOP09+NK","3":"v_kurtosis","4":"-0.014231841"},{"1":"Trutnov","2":"KDUČSL+TOP09+NK","3":"v_normality_value","4":"0.959018393"},{"1":"Most","2":"KSČM","3":"v_skew","4":"0.393660731"},{"1":"Most","2":"KSČM","3":"v_kurtosis","4":"-0.038625565"},{"1":"Most","2":"KSČM","3":"v_normality_value","4":"0.978449096"},{"1":"Kladno","2":"KSČM","3":"v_skew","4":"0.478231401"},{"1":"Kladno","2":"KSČM","3":"v_kurtosis","4":"-0.042058115"},{"1":"Kladno","2":"KSČM","3":"v_normality_value","4":"0.975719909"},{"1":"Most","2":"ČSSD","3":"v_skew","4":"0.741488596"},{"1":"Most","2":"ČSSD","3":"v_kurtosis","4":"-0.048414883"},{"1":"Most","2":"ČSSD","3":"v_normality_value","4":"0.939105567"},{"1":"Cheb","2":"KSČM","3":"v_skew","4":"0.706980471"},{"1":"Cheb","2":"KSČM","3":"v_kurtosis","4":"-0.066727017"},{"1":"Cheb","2":"KSČM","3":"v_normality_value","4":"0.934031105"},{"1":"Havlíčkův Brod","2":"TOP 09","3":"v_skew","4":"0.644195913"},{"1":"Havlíčkův Brod","2":"TOP 09","3":"v_kurtosis","4":"-0.093185638"},{"1":"Havlíčkův Brod","2":"TOP 09","3":"v_normality_value","4":"0.957173655"},{"1":"Jindřichův Hradec","2":"SPD","3":"v_skew","4":"0.483605883"},{"1":"Jindřichův Hradec","2":"SPD","3":"v_kurtosis","4":"-0.107074196"},{"1":"Jindřichův Hradec","2":"SPD","3":"v_normality_value","4":"0.970689347"},{"1":"Jablonec nad Nisou","2":"TOP 09+NK","3":"v_skew","4":"0.542713134"},{"1":"Jablonec nad Nisou","2":"TOP 09+NK","3":"v_kurtosis","4":"-0.107181340"},{"1":"Jablonec nad Nisou","2":"TOP 09+NK","3":"v_normality_value","4":"0.966405958"},{"1":"Litoměřice","2":"DSZ+NK","3":"v_skew","4":"0.675780173"},{"1":"Litoměřice","2":"DSZ+NK","3":"v_kurtosis","4":"-0.140991871"},{"1":"Litoměřice","2":"DSZ+NK","3":"v_normality_value","4":"0.936816606"},{"1":"Znojmo","2":"Piráti","3":"v_skew","4":"0.352241817"},{"1":"Znojmo","2":"Piráti","3":"v_kurtosis","4":"-0.160437204"},{"1":"Znojmo","2":"Piráti","3":"v_normality_value","4":"0.954034132"},{"1":"Jindřichův Hradec","2":"JIH 12+NK","3":"v_skew","4":"0.814876039"},{"1":"Jindřichův Hradec","2":"JIH 12+NK","3":"v_kurtosis","4":"-0.165924480"},{"1":"Jindřichův Hradec","2":"JIH 12+NK","3":"v_normality_value","4":"0.918271361"},{"1":"Cheb","2":"DSZ+NK","3":"v_skew","4":"0.698412651"},{"1":"Cheb","2":"DSZ+NK","3":"v_kurtosis","4":"-0.169248561"},{"1":"Cheb","2":"DSZ+NK","3":"v_normality_value","4":"0.933805417"},{"1":"Jihlava","2":"Piráti+NK","3":"v_skew","4":"-0.279815209"},{"1":"Jihlava","2":"Piráti+NK","3":"v_kurtosis","4":"-0.199107440"},{"1":"Jihlava","2":"Piráti+NK","3":"v_normality_value","4":"0.976531629"},{"1":"Česká Lípa","2":"ČSSD","3":"v_skew","4":"0.548392189"},{"1":"Česká Lípa","2":"ČSSD","3":"v_kurtosis","4":"-0.201300666"},{"1":"Česká Lípa","2":"ČSSD","3":"v_normality_value","4":"0.964696126"},{"1":"Třebíč","2":"DOMOV+NK","3":"v_skew","4":"0.992540772"},{"1":"Třebíč","2":"DOMOV+NK","3":"v_kurtosis","4":"-0.205627260"},{"1":"Třebíč","2":"DOMOV+NK","3":"v_normality_value","4":"0.855864389"},{"1":"Karviná","2":"SPD","3":"v_skew","4":"0.157391684"},{"1":"Karviná","2":"SPD","3":"v_kurtosis","4":"-0.207241242"},{"1":"Karviná","2":"SPD","3":"v_normality_value","4":"0.989047762"},{"1":"Most","2":"NS+NK","3":"v_skew","4":"0.122385375"},{"1":"Most","2":"NS+NK","3":"v_kurtosis","4":"-0.217874454"},{"1":"Most","2":"NS+NK","3":"v_normality_value","4":"0.992358413"},{"1":"Znojmo","2":"TOP 09","3":"v_skew","4":"0.568806372"},{"1":"Znojmo","2":"TOP 09","3":"v_kurtosis","4":"-0.230441745"},{"1":"Znojmo","2":"TOP 09","3":"v_normality_value","4":"0.950123882"},{"1":"Orlová","2":"„VO“","3":"v_skew","4":"0.653330662"},{"1":"Orlová","2":"„VO“","3":"v_kurtosis","4":"-0.262813443"},{"1":"Orlová","2":"„VO“","3":"v_normality_value","4":"0.944661412"},{"1":"Znojmo","2":"ČSSD+KSČM+SPOZ","3":"v_skew","4":"0.170226113"},{"1":"Znojmo","2":"ČSSD+KSČM+SPOZ","3":"v_kurtosis","4":"-0.283626555"},{"1":"Znojmo","2":"ČSSD+KSČM+SPOZ","3":"v_normality_value","4":"0.972873044"},{"1":"Trutnov","2":"KSČM","3":"v_skew","4":"0.335662575"},{"1":"Trutnov","2":"KSČM","3":"v_kurtosis","4":"-0.285855400"},{"1":"Trutnov","2":"KSČM","3":"v_normality_value","4":"0.968083365"},{"1":"Česká Lípa","2":"DOMOV","3":"v_skew","4":"0.922043710"},{"1":"Česká Lípa","2":"DOMOV","3":"v_kurtosis","4":"-0.288432485"},{"1":"Česká Lípa","2":"DOMOV","3":"v_normality_value","4":"0.867472581"},{"1":"Jihlava","2":"KSČM","3":"v_skew","4":"0.274442112"},{"1":"Jihlava","2":"KSČM","3":"v_kurtosis","4":"-0.299186582"},{"1":"Jihlava","2":"KSČM","3":"v_normality_value","4":"0.979622861"},{"1":"Karlovy Vary","2":"ČSSD","3":"v_skew","4":"0.626868202"},{"1":"Karlovy Vary","2":"ČSSD","3":"v_kurtosis","4":"-0.335051728"},{"1":"Karlovy Vary","2":"ČSSD","3":"v_normality_value","4":"0.951451006"},{"1":"Litoměřice","2":"KSČM+NK","3":"v_skew","4":"0.603551529"},{"1":"Litoměřice","2":"KSČM+NK","3":"v_kurtosis","4":"-0.342498585"},{"1":"Litoměřice","2":"KSČM+NK","3":"v_normality_value","4":"0.941760587"},{"1":"Přerov","2":"Piráti+NK","3":"v_skew","4":"0.094058418"},{"1":"Přerov","2":"Piráti+NK","3":"v_kurtosis","4":"-0.361157104"},{"1":"Přerov","2":"Piráti+NK","3":"v_normality_value","4":"0.988890961"},{"1":"Třebíč","2":"SNK ED+NK","3":"v_skew","4":"0.643113232"},{"1":"Třebíč","2":"SNK ED+NK","3":"v_kurtosis","4":"-0.371371151"},{"1":"Třebíč","2":"SNK ED+NK","3":"v_normality_value","4":"0.949381954"},{"1":"Chomutov","2":"Suver+BEZUL+DOM","3":"v_skew","4":"0.746729394"},{"1":"Chomutov","2":"Suver+BEZUL+DOM","3":"v_kurtosis","4":"-0.375964130"},{"1":"Chomutov","2":"Suver+BEZUL+DOM","3":"v_normality_value","4":"0.925274809"},{"1":"Trutnov","2":"SPD","3":"v_skew","4":"0.542394064"},{"1":"Trutnov","2":"SPD","3":"v_kurtosis","4":"-0.395033570"},{"1":"Trutnov","2":"SPD","3":"v_normality_value","4":"0.945430747"},{"1":"Karviná","2":"KSČM","3":"v_skew","4":"0.573024191"},{"1":"Karviná","2":"KSČM","3":"v_kurtosis","4":"-0.404363511"},{"1":"Karviná","2":"KSČM","3":"v_normality_value","4":"0.954186120"},{"1":"Frýdek-Místek","2":"KSČM","3":"v_skew","4":"0.617281319"},{"1":"Frýdek-Místek","2":"KSČM","3":"v_kurtosis","4":"-0.406817704"},{"1":"Frýdek-Místek","2":"KSČM","3":"v_normality_value","4":"0.945655760"},{"1":"Trutnov","2":"Piráti","3":"v_skew","4":"0.294858348"},{"1":"Trutnov","2":"Piráti","3":"v_kurtosis","4":"-0.433549788"},{"1":"Trutnov","2":"Piráti","3":"v_normality_value","4":"0.968683848"},{"1":"Třebíč","2":"TOP 09","3":"v_skew","4":"0.764941919"},{"1":"Třebíč","2":"TOP 09","3":"v_kurtosis","4":"-0.438289252"},{"1":"Třebíč","2":"TOP 09","3":"v_normality_value","4":"0.907002379"},{"1":"Kladno","2":"KDU-ČSL+TOP 09","3":"v_skew","4":"0.606569503"},{"1":"Kladno","2":"KDU-ČSL+TOP 09","3":"v_kurtosis","4":"-0.448890190"},{"1":"Kladno","2":"KDU-ČSL+TOP 09","3":"v_normality_value","4":"0.946876990"},{"1":"Mladá Boleslav","2":"KSČM+NK","3":"v_skew","4":"0.338492357"},{"1":"Mladá Boleslav","2":"KSČM+NK","3":"v_kurtosis","4":"-0.459498054"},{"1":"Mladá Boleslav","2":"KSČM+NK","3":"v_normality_value","4":"0.975304901"},{"1":"Česká Lípa","2":"Nestraníci+NK","3":"v_skew","4":"0.748888969"},{"1":"Česká Lípa","2":"Nestraníci+NK","3":"v_kurtosis","4":"-0.477306580"},{"1":"Česká Lípa","2":"Nestraníci+NK","3":"v_normality_value","4":"0.911048765"},{"1":"Blansko","2":"SPD+NK","3":"v_skew","4":"0.267444595"},{"1":"Blansko","2":"SPD+NK","3":"v_kurtosis","4":"-0.513569296"},{"1":"Blansko","2":"SPD+NK","3":"v_normality_value","4":"0.978801527"},{"1":"Šumperk","2":"Piráti","3":"v_skew","4":"0.323703228"},{"1":"Šumperk","2":"Piráti","3":"v_kurtosis","4":"-0.516283402"},{"1":"Šumperk","2":"Piráti","3":"v_normality_value","4":"0.985004842"},{"1":"Třebíč","2":"ČSSD+NK","3":"v_skew","4":"0.167213394"},{"1":"Třebíč","2":"ČSSD+NK","3":"v_kurtosis","4":"-0.517732719"},{"1":"Třebíč","2":"ČSSD+NK","3":"v_normality_value","4":"0.976636073"},{"1":"Přerov","2":"NV+Změna","3":"v_skew","4":"0.177038518"},{"1":"Přerov","2":"NV+Změna","3":"v_kurtosis","4":"-0.524742457"},{"1":"Přerov","2":"NV+Změna","3":"v_normality_value","4":"0.975005568"},{"1":"Přerov","2":"KSČM","3":"v_skew","4":"0.400455494"},{"1":"Přerov","2":"KSČM","3":"v_kurtosis","4":"-0.527911469"},{"1":"Přerov","2":"KSČM","3":"v_normality_value","4":"0.969657033"},{"1":"Cheb","2":"Piráti","3":"v_skew","4":"0.329648106"},{"1":"Cheb","2":"Piráti","3":"v_kurtosis","4":"-0.529492371"},{"1":"Cheb","2":"Piráti","3":"v_normality_value","4":"0.973187263"},{"1":"Kladno","2":"PŘÍSAHA","3":"v_skew","4":"0.560502004"},{"1":"Kladno","2":"PŘÍSAHA","3":"v_kurtosis","4":"-0.546071423"},{"1":"Kladno","2":"PŘÍSAHA","3":"v_normality_value","4":"0.948452753"},{"1":"Litoměřice","2":"KDUZelPirTOPNK","3":"v_skew","4":"0.079080442"},{"1":"Litoměřice","2":"KDUZelPirTOPNK","3":"v_kurtosis","4":"-0.553202417"},{"1":"Litoměřice","2":"KDUZelPirTOPNK","3":"v_normality_value","4":"0.981303549"},{"1":"Mladá Boleslav","2":"APB+NK","3":"v_skew","4":"0.268195340"},{"1":"Mladá Boleslav","2":"APB+NK","3":"v_kurtosis","4":"-0.567684405"},{"1":"Mladá Boleslav","2":"APB+NK","3":"v_normality_value","4":"0.978050968"},{"1":"Karlovy Vary","2":"KSČM","3":"v_skew","4":"0.525156631"},{"1":"Karlovy Vary","2":"KSČM","3":"v_kurtosis","4":"-0.586395031"},{"1":"Karlovy Vary","2":"KSČM","3":"v_normality_value","4":"0.949942143"},{"1":"Litoměřice","2":"SPD","3":"v_skew","4":"0.119114673"},{"1":"Litoměřice","2":"SPD","3":"v_kurtosis","4":"-0.602219707"},{"1":"Litoměřice","2":"SPD","3":"v_normality_value","4":"0.968352769"},{"1":"Trutnov","2":"Zelení+NK","3":"v_skew","4":"0.144103636"},{"1":"Trutnov","2":"Zelení+NK","3":"v_kurtosis","4":"-0.616558043"},{"1":"Trutnov","2":"Zelení+NK","3":"v_normality_value","4":"0.975010399"},{"1":"Karlovy Vary","2":"Piráti","3":"v_skew","4":"0.097434309"},{"1":"Karlovy Vary","2":"Piráti","3":"v_kurtosis","4":"-0.657599047"},{"1":"Karlovy Vary","2":"Piráti","3":"v_normality_value","4":"0.987404795"},{"1":"Chomutov","2":"ODS","3":"v_skew","4":"0.450662185"},{"1":"Chomutov","2":"ODS","3":"v_kurtosis","4":"-0.658789395"},{"1":"Chomutov","2":"ODS","3":"v_normality_value","4":"0.954451915"},{"1":"Orlová","2":"Piráti","3":"v_skew","4":"0.249714458"},{"1":"Orlová","2":"Piráti","3":"v_kurtosis","4":"-0.661020979"},{"1":"Orlová","2":"Piráti","3":"v_normality_value","4":"0.966210387"},{"1":"Jihlava","2":"SPD+Trikolora","3":"v_skew","4":"-0.257122179"},{"1":"Jihlava","2":"SPD+Trikolora","3":"v_kurtosis","4":"-0.689107801"},{"1":"Jihlava","2":"SPD+Trikolora","3":"v_normality_value","4":"0.974465693"},{"1":"Děčín","2":"Svobod+Trikolor","3":"v_skew","4":"0.558014665"},{"1":"Děčín","2":"Svobod+Trikolor","3":"v_kurtosis","4":"-0.696601471"},{"1":"Děčín","2":"Svobod+Trikolor","3":"v_normality_value","4":"0.943282608"},{"1":"Děčín","2":"DSSS+BEZ-UL","3":"v_skew","4":"0.276179436"},{"1":"Děčín","2":"DSSS+BEZ-UL","3":"v_kurtosis","4":"-0.711270468"},{"1":"Děčín","2":"DSSS+BEZ-UL","3":"v_normality_value","4":"0.963845607"},{"1":"Teplice","2":"KSČM","3":"v_skew","4":"0.283523184"},{"1":"Teplice","2":"KSČM","3":"v_kurtosis","4":"-0.716612932"},{"1":"Teplice","2":"KSČM","3":"v_normality_value","4":"0.978110686"},{"1":"Havlíčkův Brod","2":"KSČM","3":"v_skew","4":"0.543483439"},{"1":"Havlíčkův Brod","2":"KSČM","3":"v_kurtosis","4":"-0.718443035"},{"1":"Havlíčkův Brod","2":"KSČM","3":"v_normality_value","4":"0.947185214"},{"1":"Jihlava","2":"ČSSD+Levice","3":"v_skew","4":"0.469763055"},{"1":"Jihlava","2":"ČSSD+Levice","3":"v_kurtosis","4":"-0.720864047"},{"1":"Jihlava","2":"ČSSD+Levice","3":"v_normality_value","4":"0.957589444"},{"1":"Frýdek-Místek","2":"DSZ+NK","3":"v_skew","4":"0.431207855"},{"1":"Frýdek-Místek","2":"DSZ+NK","3":"v_kurtosis","4":"-0.755640125"},{"1":"Frýdek-Místek","2":"DSZ+NK","3":"v_normality_value","4":"0.952505086"},{"1":"Havlíčkův Brod","2":"SPD","3":"v_skew","4":"0.316993684"},{"1":"Havlíčkův Brod","2":"SPD","3":"v_kurtosis","4":"-0.757573852"},{"1":"Havlíčkův Brod","2":"SPD","3":"v_normality_value","4":"0.972392441"},{"1":"Jablonec nad Nisou","2":"KSČM","3":"v_skew","4":"0.657156889"},{"1":"Jablonec nad Nisou","2":"KSČM","3":"v_kurtosis","4":"-0.763466900"},{"1":"Jablonec nad Nisou","2":"KSČM","3":"v_normality_value","4":"0.916608384"},{"1":"Příbram","2":"Monarchiste+NK","3":"v_skew","4":"0.272568726"},{"1":"Příbram","2":"Monarchiste+NK","3":"v_kurtosis","4":"-0.787503548"},{"1":"Příbram","2":"Monarchiste+NK","3":"v_normality_value","4":"0.971994392"},{"1":"Prostějov","2":"DSZ+NK","3":"v_skew","4":"0.024573398"},{"1":"Prostějov","2":"DSZ+NK","3":"v_kurtosis","4":"-0.791916554"},{"1":"Prostějov","2":"DSZ+NK","3":"v_normality_value","4":"0.977142869"},{"1":"Litoměřice","2":"S.cz+NK","3":"v_skew","4":"-0.091383353"},{"1":"Litoměřice","2":"S.cz+NK","3":"v_kurtosis","4":"-0.792811835"},{"1":"Litoměřice","2":"S.cz+NK","3":"v_normality_value","4":"0.969263254"},{"1":"Znojmo","2":"DOMOV","3":"v_skew","4":"0.227192009"},{"1":"Znojmo","2":"DOMOV","3":"v_kurtosis","4":"-0.804455278"},{"1":"Znojmo","2":"DOMOV","3":"v_normality_value","4":"0.958657970"},{"1":"Orlová","2":"ČSSD","3":"v_skew","4":"0.157428025"},{"1":"Orlová","2":"ČSSD","3":"v_kurtosis","4":"-0.855869221"},{"1":"Orlová","2":"ČSSD","3":"v_normality_value","4":"0.977586128"},{"1":"Příbram","2":"SPD","3":"v_skew","4":"0.021517460"},{"1":"Příbram","2":"SPD","3":"v_kurtosis","4":"-0.857624430"},{"1":"Příbram","2":"SPD","3":"v_normality_value","4":"0.982809100"},{"1":"Trutnov","2":"Svobod+PRO2022","3":"v_skew","4":"0.430119656"},{"1":"Trutnov","2":"Svobod+PRO2022","3":"v_kurtosis","4":"-0.932275687"},{"1":"Trutnov","2":"Svobod+PRO2022","3":"v_normality_value","4":"0.944431052"},{"1":"Havlíčkův Brod","2":"Zelení+NK","3":"v_skew","4":"0.350387558"},{"1":"Havlíčkův Brod","2":"Zelení+NK","3":"v_kurtosis","4":"-0.969892056"},{"1":"Havlíčkův Brod","2":"Zelení+NK","3":"v_normality_value","4":"0.940291446"},{"1":"Třebíč","2":"Piráti+NK","3":"v_skew","4":"0.017858636"},{"1":"Třebíč","2":"Piráti+NK","3":"v_kurtosis","4":"-0.992416799"},{"1":"Třebíč","2":"Piráti+NK","3":"v_normality_value","4":"0.976504637"},{"1":"Znojmo","2":"STAN+MZH+NK","3":"v_skew","4":"0.127076075"},{"1":"Znojmo","2":"STAN+MZH+NK","3":"v_kurtosis","4":"-1.013974043"},{"1":"Znojmo","2":"STAN+MZH+NK","3":"v_normality_value","4":"0.972621004"},{"1":"Chomutov","2":"SV PRO ZS","3":"v_skew","4":"0.368458526"},{"1":"Chomutov","2":"SV PRO ZS","3":"v_kurtosis","4":"-1.023118109"},{"1":"Chomutov","2":"SV PRO ZS","3":"v_normality_value","4":"0.948598156"},{"1":"Mladá Boleslav","2":"SPD","3":"v_skew","4":"-0.356722780"},{"1":"Mladá Boleslav","2":"SPD","3":"v_kurtosis","4":"-1.028338658"},{"1":"Mladá Boleslav","2":"SPD","3":"v_normality_value","4":"0.947051508"},{"1":"Prostějov","2":"ČSSD","3":"v_skew","4":"0.250057158"},{"1":"Prostějov","2":"ČSSD","3":"v_kurtosis","4":"-1.032545321"},{"1":"Prostějov","2":"ČSSD","3":"v_normality_value","4":"0.959941644"},{"1":"Děčín","2":"KSČM","3":"v_skew","4":"0.295221491"},{"1":"Děčín","2":"KSČM","3":"v_kurtosis","4":"-1.044259197"},{"1":"Děčín","2":"KSČM","3":"v_normality_value","4":"0.950070839"},{"1":"Třebíč","2":"SPD+Trikolora","3":"v_skew","4":"-0.044584819"},{"1":"Třebíč","2":"SPD+Trikolora","3":"v_kurtosis","4":"-1.050772693"},{"1":"Třebíč","2":"SPD+Trikolora","3":"v_normality_value","4":"0.951538707"},{"1":"Blansko","2":"Piráti","3":"v_skew","4":"0.030209089"},{"1":"Blansko","2":"Piráti","3":"v_kurtosis","4":"-1.115218610"},{"1":"Blansko","2":"Piráti","3":"v_normality_value","4":"0.967274030"},{"1":"Trutnov","2":"STAN+NK","3":"v_skew","4":"0.094683241"},{"1":"Trutnov","2":"STAN+NK","3":"v_kurtosis","4":"-1.133058002"},{"1":"Trutnov","2":"STAN+NK","3":"v_normality_value","4":"0.961344977"},{"1":"Blansko","2":"KSČM","3":"v_skew","4":"0.211391233"},{"1":"Blansko","2":"KSČM","3":"v_kurtosis","4":"-1.154453944"},{"1":"Blansko","2":"KSČM","3":"v_normality_value","4":"0.957651960"},{"1":"Chomutov","2":"STAN","3":"v_skew","4":"0.232887350"},{"1":"Chomutov","2":"STAN","3":"v_kurtosis","4":"-1.160555520"},{"1":"Chomutov","2":"STAN","3":"v_normality_value","4":"0.947047841"},{"1":"Třebíč","2":"Zelení+NK","3":"v_skew","4":"0.155745847"},{"1":"Třebíč","2":"Zelení+NK","3":"v_kurtosis","4":"-1.162562969"},{"1":"Třebíč","2":"Zelení+NK","3":"v_normality_value","4":"0.953406802"},{"1":"Třinec","2":"Piráti","3":"v_skew","4":"0.304866708"},{"1":"Třinec","2":"Piráti","3":"v_kurtosis","4":"-1.211477700"},{"1":"Třinec","2":"Piráti","3":"v_normality_value","4":"0.943467219"},{"1":"Havlíčkův Brod","2":"ČSSD+PŘÍSAHA+NK","3":"v_skew","4":"-0.031493029"},{"1":"Havlíčkův Brod","2":"ČSSD+PŘÍSAHA+NK","3":"v_kurtosis","4":"-1.574502219"},{"1":"Havlíčkův Brod","2":"ČSSD+PŘÍSAHA+NK","3":"v_normality_value","4":"0.913660895"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 </section>
@@ -1222,12 +1183,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Zkopírováno!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Zkopírováno!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
